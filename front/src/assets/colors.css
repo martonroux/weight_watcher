@@ -1,0 +1,17 @@
+:root {
+    /* THEME COLORS */
+    --backround-color: #092031;
+    --banner-color: #071B29;
+    --widgets-color: #0A2538;
+    --accentuation-color: #D9F750;
+    --text-white: #FCFFEE;
+
+    /* FONT SIZES */
+    --h1-font-size: 7vw;
+    --h2-font-size: 5.5vw;
+    --body-font-size: 4.5vw;
+
+    /* DROPDOWN SIZE */
+    /* CORRESPONDS TO (--h1-font-size x 4) + 27 */
+    --drop-down-size: 55vw;
+}

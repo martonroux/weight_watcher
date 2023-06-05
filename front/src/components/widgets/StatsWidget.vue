@@ -1,0 +1,68 @@
+<script setup>
+import Button from "@/components/elements/Button.vue";
+</script>
+
+<template>
+  <div class="widget">
+    <h2 style="color: var(--accentuation-color); margin-bottom: 2vh">
+      STATS
+    </h2>
+    <div class="evol">
+      <div class="evol-text">
+        <h1>One month</h1>
+        <h1>evolution</h1>
+      </div>
+      <div class="evol-value">
+        <h2>+{{ growthPercent }}%</h2>
+      </div>
+    </div>
+    <Button :text="'All stats'" :url="allStatsUrl" style="margin-top: 4vw"/>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      allStatsUrl: "/stats"
+    }
+  },
+  props: ['growthPercent']
+}
+</script>
+
+<style scoped>
+
+.widget {
+  width: auto;
+  height: auto;
+  margin: 4vw 2vw 0 2vw;
+  padding: 4vw 6vw 4vw 6vw;
+  background-color: var(--widgets-color);
+  border-radius: 10px;
+  box-shadow: 0 7px 5px var(--backround-color);
+}
+
+.evol {
+  display: flex;
+  flex-direction: row;
+}
+
+.evol .evol-value {
+  margin-left: auto;
+}
+
+.evol .evol-text {
+  margin-right: auto;
+}
+
+.evol-value {
+  background-image: linear-gradient(to bottom right, var(--accentuation-color), transparent);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vw;
+}
+
+</style>
