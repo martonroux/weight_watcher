@@ -23,7 +23,7 @@ export default {
     fetchWeights().then(result => {
       if (result['error'] === false) {
         this.growthPercent = result['evol_weight'].toFixed(2);
-        this.firstValue = result['mean_weight'].toFixed(2);
+        this.firstValue = result['average_weight'].toFixed(2);
       }
     });
   }

@@ -11,11 +11,10 @@ export function fetchData() {
 
 export async function fetchWeights() {
     try {
-        const response = await fetch('http://localhost:8000/api/data/weights');
+        const response = await fetch('http://localhost:8000/api/get/body_weight/all_data');
         const data = await response.json();
 
-        const numbers = data['weights'];
-        const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+        const numbers = data['data']['list'];
         let totalPercentageChange = 0;
 
         for (let i = 1; i < numbers.length; i++) {
@@ -28,12 +27,15 @@ export async function fetchWeights() {
             totalPercentageChange += percentageChange;
         }
 
-        const averagePercentageChange = totalPercentageChange / (numbers.length - 1);
+        let averagePercentageChange = totalPercentageChange / (numbers.length - 1);
+        if (numbers.length === 1) {
+            averagePercentageChange = 0;
+        }
 
         return {
             "error": false,
-            "list_weights": data['weights'],
-            "mean_weight": sum / numbers.length,
+            "list_weights": data['data']['list'],
+            "average_weight": data['data']['average'],
             "evol_weight": averagePercentageChange
         }
     } catch (error) {
