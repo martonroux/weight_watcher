@@ -4,7 +4,7 @@
 <template>
   <div class="menu-dropdown">
     <ul>
-      <li v-for="(redir, index) in listRedirects" :key="redir.id">
+      <li v-for="(redir, index) in listRedirects" :key="index">
         <h1 class="menu-options" @click="onClick(redir.id)">
           {{ redir.name }}
         </h1>

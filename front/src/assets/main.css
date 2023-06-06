@@ -2,9 +2,34 @@
 @import "vars.css";
 @import "scrollbar.css";
 
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.tilt-shaking-anim {
+  animation: tilt-shaking 0.26s infinite;
+  cursor: pointer;
+}
+
+.modify-elem-center-justify {
+  position: absolute;
+  align-self: center;
+  backdrop-filter: blur(5px);
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--backround-color);
+  color: var(--text-white);
 }
 
 body {

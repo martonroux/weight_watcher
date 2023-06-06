@@ -9,7 +9,7 @@ import WorkoutWidget from "@/components/widgets/WorkoutWidget.vue";
 </template>
 
 <script>
-import { fetchWorkouts } from "@/js_components/requests";
+import { fetchWorkouts } from "@/js_components/get_requests";
 
 export default {
   data () {
@@ -19,7 +19,6 @@ export default {
   },
   mounted () {
     fetchWorkouts().then(result => {
-      console.log(result);
       this.listWorkouts = result['data'];
     });
   }

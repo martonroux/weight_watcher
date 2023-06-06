@@ -1,5 +1,5 @@
 <template>
-  <button :class="{'btn': !allStatsClicked, 'btn-active': allStatsClicked}" @click="handleClick">
+  <button :class="{'btn': !btnClicked, 'btn-active': btnClicked}" @click="handleClick">
     {{ text }}
   </button>
 </template>
@@ -8,16 +8,16 @@
 export default {
   data () {
     return {
-      allStatsClicked: false,
+      btnClicked: false,
     }
   },
   props: ['url', 'text'],
   methods: {
     handleClick() {
-      this.allStatsClicked = true;
+      this.btnClicked = true;
 
       setTimeout(() => {
-        this.allStatsClicked = false;
+        this.btnClicked = false;
         this.$router.push(this.url);
       }, 200);
     }

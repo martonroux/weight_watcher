@@ -10,7 +10,7 @@ import StatsWidget from "./components/widgets/StatsWidget.vue";
 </template>
 
 <script>
-import { fetchBodyWeights } from "@/js_components/requests";
+import { fetchBodyWeights } from "@/js_components/get_requests";
 
 export default {
   data() {

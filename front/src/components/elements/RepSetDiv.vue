@@ -1,9 +1,9 @@
 <template>
   <div class="rep-set-div">
-    <div class="rep-set-box">
+    <div class="rep-set-box" :class="{'tilt-shaking-anim': editActive}">
       <p>{{ wrktData['nb_sets'] }} sets</p>
     </div>
-    <div class="rep-set-box">
+    <div class="rep-set-box" :class="{'tilt-shaking-anim': editActive}">
       <p>{{ wrktData['nb_reps_low'] }} - {{ wrktData['nb_reps_high'] }}</p>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  props: ['wrktData']
+  props: ['wrktData', 'editActive']
 }
 </script>
 
