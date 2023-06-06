@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from requests.get.get_body_weight import get_body_weight
 from requests.get.get_workout import get_workout
+from requests.put.put_workout import put_workout
+from requests.put.put_body_weight import put_body_weight
 
 app = FastAPI()
 
@@ -21,3 +23,5 @@ def get_data():
 
 get_body_weight(app)
 get_workout(app)
+put_workout(app)
+put_body_weight(app)

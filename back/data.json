@@ -14,6 +14,7 @@
   },
   "workouts": [
     {
+      "id": 0,
       "name": "Pecs Triceps",
       "nb_sets": 4,
       "nb_reps_low": 8,
@@ -53,6 +54,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Dos Biceps",
       "nb_sets": 4,
       "nb_reps_low": 8,
