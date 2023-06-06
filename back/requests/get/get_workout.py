@@ -13,12 +13,10 @@ def get_workout(app):
             )
         return {
             "error": "False",
-            "data": {
-                "list": []
-            }
+            "data": list_workouts['data']
         }
 
-    @app.get("/api/get/workout/get_all_exercises")                  # GET LIST OF EXISTING EXERCISES IN WORKOUT
+    @app.get("/api/get/workout/get_all_exercises")                      # GET LIST OF EXISTING EXERCISES IN WORKOUT
     def get_data(workout: str = None):
         if workout is None:
             raise HTTPException(                                        # ERROR IF WORKOUT IS NONE
@@ -33,10 +31,7 @@ def get_workout(app):
             )
         return {
             "error": "False",
-            "data": {
-                "workout": workout,
-                "list": list_exercises['list']
-            }
+            "data": list_exercises['data']
         }
 
     @app.get("/api/get/workout/get_exercise_data")              # GET DATA OF A SPECIFIC EXERCISE IN A SPECIFIC WORKOUT
@@ -61,7 +56,5 @@ def get_workout(app):
 
         return {
             "error": "False",
-            "data": {
-                workout_data['list']
-            }
+            "data": workout_data['data']
         }

@@ -14,21 +14,67 @@
   },
   "workouts": [
     {
-      "name": "Pecs",
+      "name": "Pecs Triceps",
+      "nb_sets": 4,
+      "nb_reps_low": 8,
+      "nb_reps_high": 12,
       "exercises": [
         {
-          "name": "bench press",
+          "name": "Bench press",
           "list_weights": [
-            12,5,
-            13,
-            15,5,
-            17,5
+            [
+              12.5,
+              13,
+              15.5,
+              17.5
+            ],
+            [
+              12.5,
+              13,
+              15.5,
+              17.5
+            ]
           ],
           "list_reps": [
-            12,
-            12,
-            11,
-            6
+            [
+              12,
+              12,
+              11,
+              6
+            ],
+            [
+              12,
+              12,
+              11,
+              6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dos Biceps",
+      "nb_sets": 4,
+      "nb_reps_low": 8,
+      "nb_reps_high": 12,
+      "exercises": [
+        {
+          "name": "Lateral pull-downs",
+          "list_weights": [
+            [
+              12.5,
+              13,
+              15.5,
+              17.5
+            ]
+          ],
+          "list_reps": [
+            [
+              12,
+              12,
+              11,
+              6
+            ]
           ]
         }
       ]
