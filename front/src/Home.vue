@@ -4,13 +4,13 @@ import StatsWidget from "./components/widgets/StatsWidget.vue";
 
 <template>
   <div class="widget-container">
-    <StatsWidget :growth-percent="growthPercent"/>
-    <StatsWidget :growth-percent="firstValue"/>
+    <StatsWidget :growth-percent="growthPercent" :additional-text="': body weight'"/>
+    <StatsWidget :growth-percent="firstValue" :additional-text="': workout weight'"/>
   </div>
 </template>
 
 <script>
-import { fetchWeights } from "@/js_components/requests";
+import { fetchBodyWeights } from "@/js_components/requests";
 
 export default {
   data() {
@@ -20,10 +20,13 @@ export default {
     }
   },
   mounted() {
-    fetchWeights().then(result => {
-      if (result['error'] === false) {
-        this.growthPercent = result['evol_weight'].toFixed(2);
-        this.firstValue = result['average_weight'].toFixed(2);
+    fetchBodyWeights().then(result => {
+      if (result["error"] === true) {
+        this.growthPercent = NaN;
+        this.firstValue = NaN;
+      } else {
+        this.growthPercent = result['data']['evolution'].toFixed(2);
+        this.firstValue = result['data']['average'].toFixed(2);
       }
     });
   }

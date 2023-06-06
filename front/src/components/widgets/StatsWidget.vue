@@ -5,7 +5,7 @@ import Button from "@/components/elements/Button.vue";
 <template>
   <div class="widget">
     <h2 style="color: var(--accentuation-color); margin-bottom: 2vh">
-      STATS
+      STATS {{ additionalText }}
     </h2>
     <div class="evol">
       <div class="evol-text">
@@ -13,7 +13,7 @@ import Button from "@/components/elements/Button.vue";
         <h1>evolution</h1>
       </div>
       <div class="evol-value">
-        <h2>+{{ growthPercent }}%</h2>
+        <h2>{{ growthPercent >= 0 ? '+' : '' }}{{ growthPercent }}%</h2>
       </div>
     </div>
     <Button :text="'All stats'" :url="allStatsUrl" style="margin-top: 4vw"/>
@@ -24,10 +24,10 @@ import Button from "@/components/elements/Button.vue";
 export default {
   data () {
     return {
-      allStatsUrl: "/stats"
+      allStatsUrl: "/stats",
     }
   },
-  props: ['growthPercent']
+  props: ['growthPercent', 'additionalText']
 }
 </script>
 
@@ -36,11 +36,11 @@ export default {
 .widget {
   width: auto;
   height: auto;
-  margin: 4vw 2vw 0 2vw;
-  padding: 4vw 6vw 4vw 6vw;
-  background-color: var(--widgets-color);
-  border-radius: 10px;
-  box-shadow: 0 7px 5px var(--backround-color);
+  margin: var(--widget-margin);
+  padding: var(--widget-padding);
+  background-color: var(--widget-color);
+  border-radius: var(--widget-border-radius);
+  box-shadow: var(--widget-box-shadow);
 }
 
 .evol {

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import "colors.css";
+@import "vars.css";
+@import "scrollbar.css";
 
 * {
   margin: 0;
@@ -8,9 +9,13 @@
 
 body {
   font-family: Roboto, sans-serif;
+  background-color: var(--backround-color);
+  color: var(--text-white);
+}
+
+p {
   font-size: var(--body-font-size);
   color: var(--text-white);
-  background-color: var(--backround-color);
 }
 
 h2 {

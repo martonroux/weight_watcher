@@ -1,0 +1,21 @@
+@import "vars.css";
+
+::-webkit-scrollbar {
+    height: 7px;
+    width: 7px;
+}
+
+/* Style de la poignée (thumb) de la barre de défilement */
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+/* Style de la poignée au survol */
+::-webkit-scrollbar-thumb:hover {
+    background-color: darkgray;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
