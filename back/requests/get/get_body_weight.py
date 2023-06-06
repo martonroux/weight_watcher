@@ -15,7 +15,7 @@ def get_body_weight(app):
         list_weight = data['list']
 
         return {
-            "errors": "False",
+            "error": "False",
             "data": {
                 "list": list_weight,
                 "average": get_average(list_weight),

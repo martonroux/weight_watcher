@@ -60,7 +60,7 @@ def get_workout(app):
             )
 
         return {
-            "errors": "False",
+            "error": "False",
             "data": {
                 workout_data['list']
             }

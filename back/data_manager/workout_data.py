@@ -1,13 +1,41 @@
+from typing import Union
+from utils.load_data import load_data
+from utils.write_data import write_data
+
+
 # <------------------- GET FUNCTIONS ------------------->
+def load_workout_data(workout: str, data: dict) -> Union[dict, None]:   # LOAD DATA OF ONE WORKOUT
+    list_wrkts = data['workouts']
+
+    for wrkt in list_wrkts:
+        if wrkt['name'] == workout:
+            return wrkt
+    return None
+
+
+def load_exercise_data(workout: str, exercise: str, data: dict) -> Union[dict, None]:   # LOAD DATA OF ONE EXERCISE
+    wrkt_data = load_workout_data(workout, data)
+
+    if wrkt_data is None:
+        return None
+    list_exs = wrkt_data['exercises']
+    for exs in list_exs:
+        if exs['name'] == exercise:
+            return exs
+    return None
 
 
 def get_exercise_data(workout: str, exercise: str) -> dict:         # GET ALL DATA ABOUT ONE EXERCISE
-    if workout is not "Pecs":
+    data = load_data()
+    wrkt_data = load_workout_data(workout, data)
+    exs_data = load_exercise_data(workout, exercise, data)
+
+    if wrkt_data is None:
         return {
             "error": "Specified workout doesn't exist: " + workout,
             "data": {}
         }
-    if exercise is not "bench press":
+    if exs_data is None:
         return {
             "error": "Specified exercise doesn't exist in selected workout: " + exercise,
             "data": {}
@@ -16,21 +44,24 @@ def get_exercise_data(workout: str, exercise: str) -> dict:         # GET ALL DA
         "error": "False",
         "workout": workout,
         "exercise": exercise,
-        "list": []
+        "data": exs_data
     }
 
 
 def get_all_workouts() -> dict:                                     # GET LIST OF ALL WORKOUTS FROM DATA
+    data = load_data()
+
     return {
         "error": "False",
-        "list": [
-            "Pecs"
-        ]
+        "data": data['workouts']
     }
 
 
 def get_all_exercises(workout: str) -> dict:                        # GET LIST OF ALL EXERCISES IN SPECIFIED WORKOUT
-    if workout is not "Pecs":
+    data = load_data()
+    wrkt_data = load_workout_data(workout, data)
+
+    if wrkt_data is None:
         return {
             "error": "Specified workout doesn't exist: " + workout,
             "data": {}
@@ -38,9 +69,7 @@ def get_all_exercises(workout: str) -> dict:                        # GET LIST O
     return {
         "error": "False",
         "workout": workout,
-        "list": [
-            "bench press"
-        ]
+        "data": wrkt_data['exercises']
     }
 
 

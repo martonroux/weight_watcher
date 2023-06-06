@@ -2,10 +2,6 @@ def get_evolution(numbers: list) -> float:                                # FUNC
     if len(numbers) == 0:
         return 0.0
 
-    evolution = [0]
+    evolution = ((numbers[len(numbers) - 1] - numbers[0]) / numbers[0]) * 100
 
-    for i in range(1, len(numbers)):
-        current_evolution = (numbers[i] - numbers[i - 1]) / numbers[i - 1]
-        evolution.append(current_evolution)
-
-    return evolution                    # PROBABLY INCORRECT
+    return evolution
