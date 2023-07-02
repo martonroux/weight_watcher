@@ -55,14 +55,14 @@ export default {
   background-color: var(--banner-color);
   align-items: flex-start;
   padding: 20px 40px 20px 20px;
-  height: 100px;
+  height: 80px;
   transition: height 0.5s;
 }
 
 .logo {
   width: 50px;
   height: auto;
-  padding: 30px;
+  padding: 20px;
   margin-right: auto;
 }
 
@@ -78,8 +78,8 @@ export default {
 }
 
 .menu-btn {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
 }
 
@@ -94,7 +94,7 @@ export default {
 .menu-btn span {
   background: white;
   width: 100%;
-  height: 8px;
+  height: 6px;
   border-radius: 5px;
   position: absolute;
   top: 50%;

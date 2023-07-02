@@ -16,7 +16,7 @@ import Button from "@/components/elements/Button.vue";
         <h2>{{ growthPercent >= 0 ? '+' : '' }}{{ growthPercent }}%</h2>
       </div>
     </div>
-    <Button :text="'All stats'" style="margin-top: 4vw" @clicked="clickedAllStats"/>
+    <Button :text="'All stats'" style="margin-top: 20px" @clicked="clickedAllStats"/>
   </div>
 </template>
 
