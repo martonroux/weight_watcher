@@ -3,8 +3,8 @@ import Button from "@/components/elements/Button.vue";
 </script>
 
 <template>
-  <div class="edit-workout-name" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
-    <input ref="editWorkoutNameInput" class="edit-workout-name-input" type="text" v-model="input">
+  <div class="edit-nb-sets" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
+    <input ref="editNbSetsInput" class="edit-nb-sets-input" type="number" v-model="input">
     <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
     <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
   </div>
@@ -17,17 +17,23 @@ export default {
       input: '',
     }
   },
-  props: ['workoutName'],
+  props: ['nbSets', 'index'],
   mounted() {
-    this.input = this.workoutName;
-    this.$refs.editWorkoutNameInput.focus();
+    this.input = this.nbSets;
+    this.$refs.editNbSetsInput.focus();
   },
   methods: {
     closeWindow(escape) {
       if (escape === false) {
-        this.$emit('close', this.input);
+        const input = this.input;
+        const index = this.index;
+
+        this.$emit('close', input, index);
       } else {
-        this.$emit('close', this.workoutName);
+        const input = this.nbSets;
+        const index = this.index;
+
+        this.$emit('close', input, index);
       }
     }
   }
@@ -36,7 +42,7 @@ export default {
 
 <style scoped>
 
-.edit-workout-name {
+.edit-nb-sets {
   position: fixed;
   top: 0;
   left: 0;
@@ -50,16 +56,15 @@ export default {
   align-items: center;
 }
 
-.edit-workout-name-input {
-  font-weight: bold;
-  font-size: var(--h2-font-size);
-  text-transform: uppercase;
+.edit-nb-sets-input {
+  font-size: var(--body-font-size);
+  color: var(--text-white);
   border: none;
   outline: none;
   padding: 5px 10px;
 }
 
-.edit-workout-name *:not(:last-child) {
+.edit-nb-sets *:not(:last-child) {
   margin-right: 2vw;
 }
 

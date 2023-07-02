@@ -1,8 +1,13 @@
+<script setup>
+import EditNbSets from "@/components/elements/weight_rep_display/edit_elems/EditNbSets.vue";
+</script>
+
 <template>
   <div class="rep-set-div">
-    <div class="rep-set-box" :class="{'tilt-shaking-anim': editActive}">
+    <div class="rep-set-box" :class="{'tilt-shaking-anim': editActive}" @click="changeNbSets">
       <p>{{ wrktData['nb_sets'] }} sets</p>
     </div>
+    <EditNbSets v-if="nbSetsEdit" :nb-sets="wrktData['nb_sets']" :index="index" @close="submitNbSets"/>
     <div class="rep-set-box" :class="{'tilt-shaking-anim': editActive}">
       <p>{{ wrktData['nb_reps_low'] }} - {{ wrktData['nb_reps_high'] }}</p>
     </div>
@@ -11,7 +16,23 @@
 
 <script>
 export default {
-  props: ['wrktData', 'editActive']
+  data() {
+    return {
+      nbSetsEdit: false,
+    }
+  },
+  props: ['wrktData', 'editActive', 'index'],
+  methods: {
+    changeNbSets() {
+      if (this.editActive) {
+        this.nbSetsEdit = true;
+      }
+    },
+    submitNbSets(input, index) {
+      this.nbSetsEdit = false;
+      this.wrktData['nb_sets'] = input;
+    }
+  }
 }
 </script>
 

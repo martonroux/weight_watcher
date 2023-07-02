@@ -11,14 +11,14 @@ export default {
       btnClicked: false,
     }
   },
-  props: ['url', 'text'],
+  props: ['text'],
   methods: {
     handleClick() {
       this.btnClicked = true;
 
       setTimeout(() => {
         this.btnClicked = false;
-        this.$router.push(this.url);
+        this.$emit('clicked');
       }, 200);
     }
   }
