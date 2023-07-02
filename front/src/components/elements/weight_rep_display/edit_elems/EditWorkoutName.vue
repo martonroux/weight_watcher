@@ -5,8 +5,10 @@ import Button from "@/components/elements/Button.vue";
 <template>
   <div class="edit-workout-name" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
     <input ref="editWorkoutNameInput" class="edit-workout-name-input" type="text" v-model="input">
-    <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
-    <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
+    <div class="button-container">
+      <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
+      <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
+    </div>
   </div>
 </template>
 
@@ -44,10 +46,20 @@ export default {
   bottom: 0;
   z-index: 9999;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 500px) {
+  .edit-workout-name {
+    flex-direction: column;
+  }
+
+  .edit-workout-name *:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .edit-workout-name-input {

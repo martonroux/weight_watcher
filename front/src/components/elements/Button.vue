@@ -16,9 +16,9 @@ export default {
     handleClick() {
       this.btnClicked = true;
 
+      this.$emit('clicked');
       setTimeout(() => {
         this.btnClicked = false;
-        this.$emit('clicked');
       }, 200);
     }
   }

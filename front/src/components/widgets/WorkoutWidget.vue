@@ -104,6 +104,10 @@ export default {
   height: 35px;
 }
 
+.widget li:not(:last-child) {
+  margin: 0 0 20px 0;
+}
+
 .first-line {
   display: flex;
   flex-direction: row;

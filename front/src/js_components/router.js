@@ -1,6 +1,6 @@
-import Home from "@/Home.vue";
-import Stats from "@/Stats.vue";
-import Workouts from "@/Workouts.vue";
+import Home from "../Home.vue";
+import Stats from "../Stats.vue";
+import Workouts from "../Workouts.vue";
 
 export const routes = [
     { path: '/', component: Home },

@@ -4,9 +4,11 @@ import Button from "@/components/elements/Button.vue";
 
 <template>
   <div class="edit-nb-sets" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
-    <input ref="editNbSetsInput" class="edit-nb-sets-input" type="number" v-model="input">
-    <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
-    <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
+    <input ref="editNbSetsInput" class="edit-nb-sets-input" type="number" v-model="input" inputmode="numeric">
+    <div class="button-container">
+      <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
+      <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
+    </div>
   </div>
 </template>
 
@@ -50,10 +52,20 @@ export default {
   bottom: 0;
   z-index: 9999;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 500px) {
+  .edit-nb-sets {
+    flex-direction: column;
+  }
+
+  .edit-nb-sets *:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .edit-nb-sets-input {

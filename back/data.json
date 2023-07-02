@@ -15,11 +15,11 @@
   "workouts": [
     {
       "id": 0,
-      "name": "Pecs Triceps",
+      "name": "S\u00e9ance pecs",
       "exercises": [
         {
           "name": "Bench press",
-          "nb_sets": 4,
+          "nb_sets": 8,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
           "list_weights": [
