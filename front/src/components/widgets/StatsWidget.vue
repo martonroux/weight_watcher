@@ -16,7 +16,7 @@ import Button from "@/components/elements/Button.vue";
         <h2>{{ growthPercent >= 0 ? '+' : '' }}{{ growthPercent }}%</h2>
       </div>
     </div>
-    <Button :text="'All stats'" :url="allStatsUrl" style="margin-top: 4vw"/>
+    <Button :text="'All stats'" style="margin-top: 4vw" @clicked="clickedAllStats"/>
   </div>
 </template>
 
@@ -27,7 +27,12 @@ export default {
       allStatsUrl: "/stats",
     }
   },
-  props: ['growthPercent', 'additionalText']
+  props: ['growthPercent', 'additionalText'],
+  methods: {
+    clickedAllStats() {
+      this.$router.push(this.allStatsUrl);
+    }
+  }
 }
 </script>
 

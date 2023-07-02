@@ -20,7 +20,7 @@ import EditExerciseName from "@/components/elements/weight_rep_display/edit_elem
             {{ exercise['name'] }}
           </p>
           <EditExerciseName v-if="exerciseNameEdit" @close="submitExerciseName" :exercise-name="exercise['name']" :index="index"/>
-          <RepSetDiv :wrkt-data="wrktData" :edit-active="editActive"/>
+          <RepSetDiv :wrkt-data="exercise" :edit-active="editActive"/>
         </div>
         <WeightRepDisplay :reps-list="exercise['list_reps']" :weight-list="exercise['list_weights']"/>
       </li>
@@ -68,6 +68,7 @@ export default {
       this.wrktData['name'] = newName;
     },
     submitExerciseName(input, index) {
+      console.log(input);
       this.exerciseNameEdit = false;
       this.wrktData['exercises'][index]['name'] = input;
     }
