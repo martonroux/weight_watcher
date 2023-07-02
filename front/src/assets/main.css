@@ -57,11 +57,11 @@ h1 {
 
 button {
   /* BUTTON */
-  padding: 3vw;
+  padding: 15px;
   border-color: transparent;
   display: inline-block;
   background-color: var(--accentuation-color);
-  border-radius: 4vw;
+  border-radius: 20px;
   cursor: pointer;
 
   /* CONTAINING TEXT */

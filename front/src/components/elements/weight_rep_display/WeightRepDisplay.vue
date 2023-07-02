@@ -43,7 +43,7 @@ export default {
 }
 
 .weight-rep-item-active {
-  margin-left: 4vw;
+  margin-left: 20px;
 }
 
 </style>

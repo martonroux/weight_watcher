@@ -6,7 +6,7 @@ import Background from "./components/Background.vue";
 <template>
   <main>
     <div class="app">
-      <Background style="position:absolute; height: 100%; width: 100%"/>
+      <Background style="position:fixed; height: 100%; width: 100%"/>
       <div class="container-div">
         <router-view></router-view>
       </div>
@@ -27,7 +27,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  padding-top: 15vw
+  padding-top: 90px;
 }
 
 </style>

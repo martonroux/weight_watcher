@@ -25,7 +25,7 @@ export default {
   border-radius: var(--widget-border-radius);
   display: flex;
   justify-content: flex-start;
-  padding: 2vw;
+  padding: 12px;
 }
 
 .widget p {
@@ -48,7 +48,7 @@ export default {
 }
 
 .list-content-active {
-  margin-left: 3vw;
+  margin-left: 20px;
 }
 
 </style>

@@ -9,8 +9,8 @@ import Button from "@/components/elements/Button.vue";
     </h2>
     <div class="evol">
       <div class="evol-text">
-        <h1>One month</h1>
-        <h1>evolution</h1>
+        <h2>One month</h2>
+        <h2>evolution</h2>
       </div>
       <div class="evol-value">
         <h2>{{ growthPercent >= 0 ? '+' : '' }}{{ growthPercent }}%</h2>
@@ -67,7 +67,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2vw;
+  padding: 10px;
 }
 
 </style>

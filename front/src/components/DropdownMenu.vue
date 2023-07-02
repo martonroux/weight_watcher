@@ -59,7 +59,7 @@ export default {
 }
 
 .menu-dropdown h1 {
-  margin-bottom: 6vw;
+  margin-bottom: 20px;
 }
 
 .menu-options {

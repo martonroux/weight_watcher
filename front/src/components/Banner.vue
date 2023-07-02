@@ -54,22 +54,22 @@ export default {
   justify-content: flex-end;
   background-color: var(--banner-color);
   align-items: flex-start;
-  padding: 2vw 4vw 2vw 2vw;
-  height: 14vw;
+  padding: 20px 40px 20px 20px;
+  height: 100px;
   transition: height 0.5s;
 }
 
 .logo {
-  width: 9vw;
+  width: 50px;
   height: auto;
-  padding: 3vw;
+  padding: 30px;
   margin-right: auto;
 }
 
 .dropdown-container {
   position: absolute;
-  left: 2vw;
-  top: 15vw;
+  left: 20px;
+  top: 90px;
 }
 
 
@@ -78,8 +78,8 @@ export default {
 }
 
 .menu-btn {
-  width: 14vw;
-  height: 14vw;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
 }
 
@@ -94,7 +94,7 @@ export default {
 .menu-btn span {
   background: white;
   width: 100%;
-  height: 1vw;
+  height: 8px;
   border-radius: 5px;
   position: absolute;
   top: 50%;

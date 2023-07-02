@@ -96,12 +96,12 @@ export default {
 
 .widget h2 {
   color: var(--accentuation-color);
-  margin-bottom: 5vw;
+  margin-bottom: 20px;
 }
 
 .widget img {
-  width: 6vw;
-  height: 6vw;
+  width: 35px;
+  height: 35px;
 }
 
 .first-line {
@@ -109,7 +109,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4vw;
+  margin-bottom: 20px;
 }
 
 </style>

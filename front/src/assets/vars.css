@@ -9,17 +9,17 @@
 
 
     /* >------------ FONT SIZES ------------< */
-    --h1-font-size: 7vw;
-    --h2-font-size: 5.5vw;
-    --body-font-size: 4.5vw;
+    --h1-font-size: 45px;
+    --h2-font-size: 32px;
+    --body-font-size: 20px;
 
     /* >------------ ELEMENTS SIZES ------------< */
     /* DROP DOWN SIZE: CORRESPONDS TO (--h1-font-size x 4) + 27 */
-    --drop-down-size: 55vw;
+    --drop-down-size: 300px;
 
     /* >------------ WIDGET VARS ------------< */
-    --widget-margin: 4vw 2vw 0 2vw;
-    --widget-padding: 4vw 6vw 4vw 6vw;
+    --widget-margin: 40px 10px 0 10px;
+    --widget-padding: 20px 30px 20px 30px;
     --widget-border-radius: 10px;
     --widget-box-shadow: 0 7px 5px var(--backround-color);
 }

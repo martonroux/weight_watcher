@@ -44,7 +44,7 @@ export default {
 }
 
 .rep-set-div .rep-set-box:not(:last-child) {
-  margin-right: 2vw;
+  margin-right: 10px;
 }
 
 .rep-set-box {
@@ -52,7 +52,7 @@ export default {
   width: auto;
   border-radius: var(--widget-border-radius);
   border: 2px solid var(--accentuation-color);
-  padding: 1vw;
+  padding: 10px;
 }
 
 </style>
