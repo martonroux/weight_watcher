@@ -1,5 +1,8 @@
+const api_link = "http://2.4.115.102:8000";
+
+
 export function updateWorkout(newWorkout) {
-    fetch("http://localhost:8000/api/put/workout/update_workout", {
+    fetch(api_link + "/api/put/workout/update_workout", {
     method: "PUT",
     headers: {
         "Content-Type": "application/json"

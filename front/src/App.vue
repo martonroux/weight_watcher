@@ -17,6 +17,7 @@ import Background from "./components/Background.vue";
 
 <script>
 export default {
+
 }
 </script>
 
@@ -27,7 +28,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  padding-top: 90px;
+  padding-top: 80px;
 }
 
 </style>

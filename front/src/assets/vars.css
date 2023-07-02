@@ -18,7 +18,7 @@
     --drop-down-size: 300px;
 
     /* >------------ WIDGET VARS ------------< */
-    --widget-margin: 40px 10px 0 10px;
+    --widget-margin: 25px 10px 0 10px;
     --widget-padding: 20px 30px 20px 30px;
     --widget-border-radius: 10px;
     --widget-box-shadow: 0 7px 5px var(--backround-color);

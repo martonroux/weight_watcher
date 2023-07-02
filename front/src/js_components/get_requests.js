@@ -1,5 +1,7 @@
+const api_link = "http://2.4.115.102:8000";
+
 export function fetchData() {
-    fetch('http://localhost:8000/api/data')
+    fetch(api_link + '/api/data')
         .then(response => response.json())
         .then(data => {
             console.log(data)
@@ -11,7 +13,7 @@ export function fetchData() {
 
 export async function fetchBodyWeights() {
     try {
-        const response = await fetch('http://localhost:8000/api/get/body_weight/all_data');
+        const response = await fetch(api_link + '/api/get/body_weight/all_data');
         const data = await response.json();
 
         if (data['error'] === "False") {
@@ -32,7 +34,7 @@ export async function fetchBodyWeights() {
 
 export async function fetchWorkouts() {
     try {
-        const response = await fetch('http://localhost:8000/api/get/workout/get_all_workouts');
+        const response = await fetch(api_link + '/api/get/workout/get_all_workouts');
         const data = await response.json();
 
         if (data['error'] === "False") {

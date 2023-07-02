@@ -72,7 +72,6 @@ export default {
   top: 90px;
 }
 
-
 .banner_active {
   height: var(--drop-down-size);
 }
