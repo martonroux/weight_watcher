@@ -52,7 +52,7 @@ export default {
   bottom: 0;
   z-index: 9999;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
