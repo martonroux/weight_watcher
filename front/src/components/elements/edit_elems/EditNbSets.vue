@@ -4,6 +4,7 @@ import Button from "@/components/elements/Button.vue";
 
 <template>
   <div class="edit-nb-sets" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
+    <h2 style="margin-bottom: 50px">Number of Sets</h2>
     <input ref="editNbSetsInput" class="edit-nb-sets-input" type="number" v-model="input" inputmode="numeric">
     <div class="button-container">
       <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>

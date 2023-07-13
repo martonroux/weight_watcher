@@ -4,6 +4,7 @@ import Button from "@/components/elements/Button.vue";
 
 <template>
   <div class="edit-nb-reps" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
+    <h2 style="margin-bottom: 50px">Number of reps</h2>
     <h2>
       Low
     </h2>

@@ -1,88 +1,79 @@
 <script setup>
-import RepSetDiv from "@/components/elements/RepSetDiv.vue";
-import WeightRepDisplay from "@/components/elements/weight_rep_display/WeightRepDisplay.vue";
+import WorkoutPage from "@/components/WorkoutPage.vue";
 import EditWorkoutButton from "@/components/elements/weight_rep_display/EditWorkoutButton.vue";
-import EditWorkoutName from "@/components/elements/weight_rep_display/edit_elems/EditWorkoutName.vue";
-import EditExerciseName from "@/components/elements/weight_rep_display/edit_elems/EditExerciseName.vue";
 </script>
 
 <template>
   <div class="widget">
-    <div class="workout-title">
-      <h2 :class="{'tilt-shaking-anim': editActive}" @click="changeWorkoutName">{{ wrktData['name'] }}</h2>
-      <EditWorkoutName v-if="workoutNameEdit" :workout-name="wrktData['name']" @close="submitWorkoutName"/>
-      <EditWorkoutButton @clicked="handleEditWorkout"/>
-    </div>
-    <ol>
-      <li v-for="(exercise, index) in wrktData['exercises']" :key="index">
-        <div class="first-line">
-          <p :class="{'tilt-shaking-anim': editActive}" v-if="!exerciseNameEdit" @click="changeExerciseName(index)">
-            {{ exercise['name'] }}
-          </p>
-          <EditExerciseName v-if="exerciseNameEdit" @close="submitExerciseName" :exercise-name="exercise['name']" :index="index"/>
-          <RepSetDiv :wrkt-data="exercise" :edit-active="editActive"/>
+    <div class="widget-banner">
+      <EditWorkoutButton @clicked="handleEditWorkout" v-if="activeDropDown && showEditButton" style="margin-right: 2vw"/>
+      <div class="workout-title" :class="{'tilt-shaking-anim': editActive}" @click="toggleWorkoutNameEdit">
+        <h2>{{ wrktData['name'] }}</h2>
+      </div>
+      <div class="dropdown-button" @click="toggleDropDown">
+        <div>
+          <span class="line-1" :style="{'transform': 'rotate(' + -linesRotation + 'deg) translate(' + linesTranslationX + '%, ' + linesTranslationY + '%)', 'width': width + '%'}"></span>
+          <span class="line-2" :style="{'transform': 'rotate(' + linesRotation + 'deg) translate(' + -linesTranslationX + '%, ' + linesTranslationY + '%)', 'width': width + '%'}"></span>
         </div>
-        <WeightRepDisplay :reps-list="exercise['list_reps']" :weight-list="exercise['list_weights']"/>
-      </li>
-    </ol>
+      </div>
+    </div>
+    <WorkoutPage v-if="activeDropDown" :wrkt-data="wrktData" @editActive="toggleEditActive" :workout-name-edit="workoutNameEdit" :edit-active="editActive" @doneWorkoutEdit="submitWorkoutName"/>
   </div>
 </template>
-
 <script>
 
-import { updateWorkout } from "@/js_components/put_requests";
+import {updateWorkout} from "@/js_components/put_requests";
 
 export default {
   data () {
     return {
+      activeDropDown: false,
       editActive: false,
       workoutNameEdit: false,
-      exerciseNameEdit: false,
-      workoutInput: '',
-      exerciseInput: ''
+      showEditButton: false,
+      linesRotation: 45,
+      linesTranslationX: 20,
+      linesTranslationY: 80,
+      width: 80
     }
   },
-  props: ['wrktData'],
+  props: ["wrktData"],
   methods: {
     handleEditWorkout() {
       this.editActive = !this.editActive;
       if (this.editActive === false) {
-        this.workoutNameEdit = false;
         updateWorkout(this.wrktData);
       }
     },
-    changeWorkoutName() {
-      if (this.editActive) {
+    toggleDropDown() {
+      this.width = (this.width === 80) ? 100 : 80;
+      this.linesTranslationY = (this.linesTranslationY === 80) ? 0 : 80;
+      this.linesTranslationX = (this.linesTranslationX === 20) ? 0 : 20;
+      this.activeDropDown = !this.activeDropDown;
+
+      if (this.activeDropDown === true)
+        this.showEditButton = true;
+      else
+        this.showEditButton = false;
+      if (this.activeDropDown === false && this.editActive === true)
+        this.handleEditWorkout();
+    },
+    toggleEditActive(active) {
+      this.editActive = active;
+    },
+    toggleWorkoutNameEdit() {
+      if (this.editActive === true) {
         this.workoutNameEdit = true;
-        this.workoutInput = this.wrktData['name'];
       }
     },
-    changeExerciseName(index) {
-      if (this.editActive) {
-        this.exerciseNameEdit = true;
-        this.exerciseInput = this.wrktData['exercises'][index]['name'];
-      }
-    },
-    submitWorkoutName(newName) {
+    submitWorkoutName() {
       this.workoutNameEdit = false;
-      this.wrktData['name'] = newName;
-    },
-    submitExerciseName(input, index) {
-      console.log(input);
-      this.exerciseNameEdit = false;
-      this.wrktData['exercises'][index]['name'] = input;
     }
   }
 }
 </script>
 
 <style scoped>
-
-.workout-title {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
 .widget {
   width: auto;
@@ -94,26 +85,56 @@ export default {
   box-shadow: var(--widget-box-shadow);
 }
 
-.widget h2 {
-  color: var(--accentuation-color);
-  margin-bottom: 20px;
-}
-
-.widget img {
-  width: 35px;
-  height: 35px;
-}
-
-.widget li:not(:last-child) {
-  margin: 0 0 20px 0;
-}
-
-.first-line {
+.widget-banner {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: flex-start;
 }
+
+.dropdown-button {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.widget h2 {
+  color: var(--accentuation-color);
+}
+
+.dropdown-button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.dropdown-button div {
+  position: relative;
+  top: 40%;
+  left: 5%;
+}
+
+img {
+  width: var(--h2-font-size);
+  height: var(--h2-font-size);
+}
+
+.dropdown-button span {
+  background: var(--text-white);
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  position: absolute;
+  transform: translate(-100%, -100%);
+  transition: transform 0.3s, width 0.3s;
+}
+
+/*
+write me a code in HTML and CSS of an animation like this:
+two rectangles form an arrow pointing to the right like this >
+when clicked on it, the two rectangles become a cross, like this x
+when clicked again, they get back to the original arrow
+the rectangles are white and rounded. The animation must take 0.5s
+ */
 
 </style>

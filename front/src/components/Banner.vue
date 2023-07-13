@@ -91,7 +91,7 @@ export default {
 }
 
 .menu-btn span {
-  background: white;
+  background: var(--text-white);
   width: 100%;
   height: 6px;
   border-radius: 5px;

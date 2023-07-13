@@ -22,10 +22,7 @@ export default {
       } else {
         this.imgPath = "./src/assets/icons/check.png";
       }
-      setTimeout(() => {
-        this.imgClicked = false;
-        this.$emit('clicked');
-      }, 200);
+      this.$emit('clicked');
     }
   }
 }

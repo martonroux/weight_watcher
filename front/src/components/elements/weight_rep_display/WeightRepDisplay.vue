@@ -1,15 +1,20 @@
 <script setup>
-
+import Button from "@/components/elements/Button.vue";
 import WeightRepSingleDisplay from "@/components/elements/weight_rep_display/WeightRepSingleDisplay.vue";
+import EditWeightRep from "@/components/elements/edit_elems/EditWeightRep.vue";
 </script>
 
 <template>
   <div class="weight-rep-container">
     <ol class="weight-rep-list">
+      <li class="add-weight-rep" style="margin-right: 10px">
+        <Button :text="'+'" style="height: 100%; border-radius: 10px; padding: 10px"/>
+      </li>
       <li v-for="(rep, index) in repsList" :key="index">
-        <div class="weight-rep-item" :class="{'weight-rep-item-active': index > 0}">
-          <WeightRepSingleDisplay :reps-list="rep" :weight-list="weightList[index]"/>
+        <div class="weight-rep-item" :class="{'weight-rep-item-active': index > 0}" :style="{cursor: editActive ? 'pointer' : 'default'}">
+          <WeightRepSingleDisplay :reps-list="rep" :weight-list="weightList[index]" :edit-active="editActive" @click="changeWeightRep(rep, weightList[index])"/>
         </div>
+        <EditWeightRep v-if="editWeightRep !== -1" :rep-data="repInput" :weight-data="weightInput" :index="editWeightRep" @close="handleWeightRepModif"/>
       </li>
     </ol>
   </div>
@@ -17,7 +22,26 @@ import WeightRepSingleDisplay from "@/components/elements/weight_rep_display/Wei
 
 <script>
 export default {
-  props: ['repsList', 'weightList']
+  data() {
+    return {
+      editWeightRep: -1,
+      repInput: {},
+      weightInput: {},
+    }
+  },
+  props: ['repsList', 'weightList', 'editActive'],
+  methods: {
+    changeWeightRep(rep, weight, index) {
+      if (this.editActive === true && this.editWeightRep === -1) {
+        this.editWeightRep = index;
+        this.repInput = rep;
+        this.weightInput = weight;
+      }
+    },
+    handleWeightRepModif() {
+      this.editWeightRep = -1;
+    }
+  }
 }
 </script>
 

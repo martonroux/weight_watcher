@@ -1,6 +1,9 @@
 <template>
   <button :class="{'btn': !btnClicked, 'btn-active': btnClicked}" @click="handleClick">
-    {{ text }}
+    <span class="conditionnal" v-if="text">
+      {{ text }}
+    </span>
+    <img :src="imgUrl" alt="check" v-if="imgUrl">
   </button>
 </template>
 
@@ -11,7 +14,7 @@ export default {
       btnClicked: false,
     }
   },
-  props: ['text'],
+  props: ['text', 'imgUrl'],
   methods: {
     handleClick() {
       this.btnClicked = true;
@@ -26,6 +29,11 @@ export default {
 </script>
 
 <style scoped>
+
+img {
+  height: var(--body-font-size);
+  width: var(--body-font-size);
+}
 
 .btn:hover {
   scale: 96%;

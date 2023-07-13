@@ -3,16 +3,21 @@
 @import "scrollbar.css";
 
 @keyframes tilt-shaking {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(2deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(-2deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(-1deg);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: rotate(1.5deg);
+    animation-timing-function: ease-out;
+  }
 }
 
 .tilt-shaking-anim {
   animation: tilt-shaking 0.26s infinite;
   cursor: pointer;
+  transform-origin: 30% 5%;
 }
 
 .modify-elem-center-justify {

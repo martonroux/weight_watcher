@@ -3,8 +3,9 @@ import Button from "@/components/elements/Button.vue";
 </script>
 
 <template>
-  <div class="edit-workout-name" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
-    <input ref="editWorkoutNameInput" class="edit-workout-name-input" type="text" v-model="input">
+  <div class="edit-exercise-name" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
+    <h2 style="margin-bottom: 50px">Exercise Name</h2>
+    <input ref="editExerciseNameInput" class="edit-exercise-name-input" type="text" v-model="input">
     <div class="button-container">
       <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
       <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
@@ -19,17 +20,23 @@ export default {
       input: '',
     }
   },
-  props: ['workoutName'],
+  props: ['exerciseName', 'index'],
   mounted() {
-    this.input = this.workoutName;
-    this.$refs.editWorkoutNameInput.focus();
+    this.input = this.exerciseName;
+    this.$refs.editExerciseNameInput.focus();
   },
   methods: {
     closeWindow(escape) {
       if (escape === false) {
-        this.$emit('close', this.input);
+        const input = this.input;
+        const index = this.index;
+
+        this.$emit('close', input, index);
       } else {
-        this.$emit('close', this.workoutName);
+        const input = this.exerciseName;
+        const index = this.index;
+
+        this.$emit('close', input, index);
       }
     }
   }
@@ -38,7 +45,7 @@ export default {
 
 <style scoped>
 
-.edit-workout-name {
+.edit-exercise-name {
   position: fixed;
   top: 0;
   left: 0;
@@ -53,25 +60,24 @@ export default {
 }
 
 @media (max-width: 500px) {
-  .edit-workout-name {
+  .edit-exercise-name {
     flex-direction: column;
   }
 
-  .edit-workout-name *:not(:last-child) {
+  .edit-exercise-name *:not(:last-child) {
     margin-bottom: 10px;
   }
 }
 
-.edit-workout-name-input {
-  font-weight: bold;
-  font-size: var(--h2-font-size);
-  text-transform: uppercase;
+.edit-exercise-name-input {
+  font-size: var(--body-font-size);
+  color: var(--text-white);
   border: none;
   outline: none;
   padding: 5px 10px;
 }
 
-.edit-workout-name *:not(:last-child) {
+.edit-exercise-name *:not(:last-child) {
   margin-right: 2vw;
 }
 

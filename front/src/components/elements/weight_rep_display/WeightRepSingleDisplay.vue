@@ -3,8 +3,8 @@
     <ol class="flex-container">
       <li class="list" v-for="(rep, index) in repsList" :key="index">
         <div class="list-content" :class="{'list-content-active': index > 0}">
-          <p>{{ rep }} rep</p>
-          <p>{{ weightList[index] }} kg</p>
+          <p :class="{'tilt-shaking-anim': editActive}">{{ rep }} rep</p>
+          <p :class="{'tilt-shaking-anim': editActive}">{{ weightList[index] }} kg</p>
         </div>
       </li>
     </ol>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['repsList', 'weightList']
+  props: ['repsList', 'weightList', 'editActive']
 }
 </script>
 

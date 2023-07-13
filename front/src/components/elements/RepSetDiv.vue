@@ -1,6 +1,6 @@
 <script setup>
-import EditNbSets from "@/components/elements/weight_rep_display/edit_elems/EditNbSets.vue";
-import EditNbReps from "@/components/elements/weight_rep_display/edit_elems/EditNbReps.vue";
+import EditNbSets from "@/components/elements/edit_elems/EditNbSets.vue";
+import EditNbReps from "@/components/elements/edit_elems/EditNbReps.vue";
 </script>
 
 <template>
