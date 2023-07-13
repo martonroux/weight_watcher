@@ -4,19 +4,22 @@ from api_requests.get.get_body_weight import get_body_weight
 from api_requests.get.get_workout import get_workout
 from api_requests.put.put_workout import put_workout
 from api_requests.put.put_body_weight import put_body_weight
+from fastapi.staticfiles import StaticFiles
+import uvicorn
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="../front/dist"))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://192.168.1.23:5173"],
-    allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
-    )
+)
 
 
-@app.get("/api/get")
+@app.get("/")
 def get_data():
     return "Hello world!"
 
