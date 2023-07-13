@@ -7,7 +7,7 @@
 export default {
   data () {
     return {
-      imgPath: "./src/assets/icons/edit.png",
+      imgPath: "./edit.png",
       imgClicked: false,
       isEditing: false,
     }
