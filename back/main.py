@@ -9,7 +9,7 @@ import uvicorn
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="../front/dist"))
+app.mount("/static", StaticFiles(directory="../front/dist", html=True))
 
 app.add_middleware(
     CORSMiddleware,
