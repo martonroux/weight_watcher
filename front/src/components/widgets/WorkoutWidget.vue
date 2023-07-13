@@ -6,7 +6,7 @@ import EditWorkoutButton from "@/components/elements/weight_rep_display/EditWork
 <template>
   <div class="widget">
     <div class="widget-banner">
-      <EditWorkoutButton @clicked="handleEditWorkout" v-if="activeDropDown && showEditButton" style="margin-right: 2vw"/>
+      <EditWorkoutButton @clicked="handleEditWorkout" v-if="activeDropDown && showEditButton" style="margin-right: 2vw; cursor: pointer;"/>
       <div class="workout-title" :class="{'tilt-shaking-anim': editActive}" @click="toggleWorkoutNameEdit">
         <h2>{{ wrktData['name'] }}</h2>
       </div>
