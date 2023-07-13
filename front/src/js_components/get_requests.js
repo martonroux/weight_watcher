@@ -1,4 +1,4 @@
-const api_link = "http://13.36.167.128";
+const api_link = "https://api.martonroux.com";
 
 export function fetchData() {
     fetch(api_link + '/api/data')

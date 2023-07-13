@@ -1,4 +1,4 @@
-const api_link = "http://13.36.167.128";
+const api_link = "https://api.martonroux.com";
 
 
 function compareDictionnaries(dict1, dict2) {
