@@ -18,9 +18,9 @@ export default {
       this.isEditing = !this.isEditing;
 
       if (this.isEditing === false) {
-        this.imgPath = "./src/assets/icons/edit.png";
+        this.imgPath = "./edit.png";
       } else {
-        this.imgPath = "./src/assets/icons/check.png";
+        this.imgPath = "./check.png";
       }
       this.$emit('clicked');
     }
