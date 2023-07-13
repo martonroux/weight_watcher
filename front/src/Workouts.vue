@@ -1,5 +1,5 @@
 <script setup>
-import WorkoutWidget from "@/components/widgets/WorkoutWidget.vue";
+import WorkoutWidget from "@/components/workout/WorkoutWidget.vue";
 </script>
 
 <template>

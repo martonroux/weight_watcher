@@ -1,5 +1,5 @@
 <script setup>
-import WorkoutPage from "@/components/WorkoutPage.vue";
+import WorkoutPage from "@/components/workout/WorkoutPage.vue";
 import EditWorkoutButton from "@/components/elements/weight_rep_display/EditWorkoutButton.vue";
 </script>
 
@@ -34,15 +34,25 @@ export default {
       linesRotation: 45,
       linesTranslationX: 20,
       linesTranslationY: 80,
-      width: 80
+      width: 80,
+      wrktDataSave: {}
     }
   },
   props: ["wrktData"],
+  watch: {
+    wrktData: {
+      immediate: true,
+      handler() {
+        this.wrktDataSave = JSON.parse(JSON.stringify(this.wrktData));
+      }
+    }
+  },
   methods: {
     handleEditWorkout() {
       this.editActive = !this.editActive;
       if (this.editActive === false) {
-        updateWorkout(this.wrktData);
+        updateWorkout(this.wrktData, this.wrktDataSave);
+        this.wrktDataSave = JSON.parse(JSON.stringify(this.wrktData));
       }
     },
     toggleDropDown() {

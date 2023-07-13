@@ -1,8 +1,18 @@
 const api_link = "http://127.0.0.1:8000";
 
 
-export function updateWorkout(newWorkout) {
-    console.log(newWorkout['exercises']);
+function compareDictionnaries(dict1, dict2) {
+    const json1 = JSON.stringify(dict1);
+    const json2 = JSON.stringify(dict2);
+
+    return json1 === json2;
+}
+
+
+export function updateWorkout(newWorkout, oldWorkout) {
+    if (compareDictionnaries(newWorkout, oldWorkout) === true) {
+        return;
+    }
 
     for (let i = 0; i < newWorkout['exercises'].length; i++) {
         for (let j = 0; j < newWorkout['exercises'][i]['list_reps'].length; j++) {

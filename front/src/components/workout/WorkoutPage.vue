@@ -24,8 +24,8 @@ import Button from "@/components/elements/Button.vue";
         </div>
         <WeightRepDisplay :reps-list="exercise['list_reps']" :weight-list="exercise['list_weights']" :edit-active="editActive"/>
       </li>
-      <li class="add-workout" style="width: 100%; display: flex; justify-content: center;">
-        <Button :text="'+'" style="padding: 5px 10px 5px 10px;"/>
+      <li class="add-workout" style="width: 100%; display: flex; justify-content: center;" v-if="editActive">
+        <Button :text="'+'" style="padding: 5px 10px 5px 10px;" @clicked="addNewWorkout"/>
       </li>
     </ol>
   </div>
@@ -36,7 +36,7 @@ import Button from "@/components/elements/Button.vue";
 export default {
   data () {
     return {
-      exerciseNameEdit: false,
+      exerciseNameEdit: false
     }
   },
   props: ['wrktData', 'workoutNameEdit', 'editActive'],
@@ -54,6 +54,17 @@ export default {
     submitExerciseName(input, index) {
       this.exerciseNameEdit = false;
       this.wrktData['exercises'][index]['name'] = input;
+    },
+    addNewWorkout() {
+      const newExercise = {
+        "name": "New Exercise",
+        "nb_sets": 0,
+        "nb_reps_low": 8,
+        "nb_reps_high": 12,
+        "list_weights": [],
+        "list_reps": []
+      }
+      this.wrktData['exercises'].push(newExercise);
     }
   }
 }
@@ -73,7 +84,7 @@ export default {
   flex-direction: row;
   justify-content: flex-end;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .widget li:not(:last-child) {

@@ -7,7 +7,7 @@ import EditWeightRep from "@/components/elements/edit_elems/EditWeightRep.vue";
 <template>
   <div class="weight-rep-container">
     <ol class="weight-rep-list">
-      <li class="add-weight-rep" style="margin-right: 10px">
+      <li class="add-weight-rep" style="margin-right: 10px" v-if="editActive">
         <Button :text="'+'" style="height: 100%; border-radius: 10px; padding: 10px" @clicked="addNewData"/>
       </li>
       <li v-for="(rep, index) in repsList" :key="index">
