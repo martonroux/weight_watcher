@@ -51,10 +51,7 @@ export default {
       this.linesTranslationX = (this.linesTranslationX === 20) ? 0 : 20;
       this.activeDropDown = !this.activeDropDown;
 
-      if (this.activeDropDown === true)
-        this.showEditButton = true;
-      else
-        this.showEditButton = false;
+      this.showEditButton = this.activeDropDown === true;
       if (this.activeDropDown === false && this.editActive === true)
         this.handleEditWorkout();
     },
