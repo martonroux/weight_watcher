@@ -1,11 +1,12 @@
 :root {
     /* >------------ THEME COLORS ------------< */
-    --backround-color: #092031;
-    --banner-color: #071B29;
-    --widget-color: #0A2538;
-    --accentuation-color: #D9F750;
-    --text-white: #FCFFEE;
-    --text-transparent: rgba(252, 255, 238, 0.8);
+    --backround-color: #151b2d;
+    --banner-color: #1A2238;
+    --widget-color: #1A2238;
+    --accentuation-color: #9DAAF2;
+    --major-color: #FF6A3D;
+    --text-white: #FCF5ED;
+    --text-transparent: #FCF5ED;
 
     /* >------------ FONT SIZES ------------< */
     --h1-font-size: 40px;
