@@ -101,12 +101,17 @@ export default {
 .widget-banner {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
-.dropdown-button {
-  align-self: flex-end;
-  margin-left: auto;
+@media (min-width: 500px) {
+  .widget-banner {
+    justify-content: flex-end;
+  }
+  .dropdown-button {
+    align-self: flex-end;
+    margin-left: auto;
+  }
 }
 
 .widget h2 {
