@@ -20,8 +20,8 @@ export default {
 <style scoped>
 
 .widget {
-  background-color: var(--backround-color);
-  border: 2px solid var(--text-white);
+  background-color: #151b2d;
+  border: 2px dot-dash var(--text-white);
   border-radius: var(--widget-border-radius);
   display: flex;
   justify-content: flex-start;

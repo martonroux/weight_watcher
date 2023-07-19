@@ -15,7 +15,7 @@ import Button from "@/components/elements/Button.vue";
             <input ref="editRepInput" class="edit-weight-rep-input" type="number" v-model="repData[index]" inputmode="decimal"/>
             <input ref="editWeightInput" class="edit-weight-rep-input" type="number" v-model="weightData[index]" inputmode="decimal"/>
           </div>
-          <Button :text="'del'" style="height: 35px; padding: 0 5px 0 5px; border-radius: var(--widget-border-radius);" @clicked="openPopup(index)"/>
+          <Button :img-url="'delete.png'" style="height: 35px; padding: 0 5px 0 5px; border-radius: var(--widget-border-radius); background-color: var(--major-color)" @clicked="openPopup(index)"/>
           <PopUpWindow :open="popUpOpen === index" ref="popup" @closed="closePopup">
             <p>Are you sure?</p>
             <p>Deleting is irreversible.</p>

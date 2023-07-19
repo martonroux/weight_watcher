@@ -8,7 +8,7 @@ import Button from "@/components/elements/Button.vue";
       <slot></slot>
     </div>
     <div class="row-div">
-      <Button :text="'OK'" @clicked="closePopup(true)"/>
+      <Button :text="okText" :style="{'background-color': (this.okText !== 'OK') ? 'gray' : 'var(--accentuation-color)'}" @clicked="closePopup(true)"/>
       <Button :text="'Cancel'" @clicked="closePopup(false)"/>
     </div>
   </div>
@@ -16,18 +16,50 @@ import Button from "@/components/elements/Button.vue";
 
 <script>
 export default {
+  data () {
+    return {
+      okText: 'OK'
+    }
+  },
   props: {
     open: {
       type: Boolean,
       required: true
+    },
+    timer: {
+      type: Boolean,
+      required: false
     }
   },
   emits: ['closed'],
+  watch: {
+    open: function (newValue, oldValue) {
+      this.countDown(newValue);
+    }
+  },
   methods: {
     closePopup(isOk) {
+      if (isOk === true && this.okText !== 'OK')
+        return;
+
       this.$emit('closed', isOk);
+    },
+    countDown(newValue) {
+      if (this.timer && newValue === true) {
+        if (this.okText === '1') {
+          this.okText = 'OK';
+        } else {
+          if (this.okText === 'OK') {
+            this.okText = '5';
+          } else {
+            const num = parseInt(this.okText);
+            this.okText = (num - 1).toString();
+          }
+          setTimeout(() => this.countDown(newValue), 1000);
+        }
+      }
     }
-  }
+  },
 };
 </script>
 

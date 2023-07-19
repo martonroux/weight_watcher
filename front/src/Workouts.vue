@@ -3,9 +3,13 @@ import WorkoutWidget from "@/components/workout/WorkoutWidget.vue";
 </script>
 
 <template>
-  <li v-for="(wrkt, index) in listWorkouts" :key="index">
-    <WorkoutWidget :wrkt-data="wrkt" class="widget"/>
-  </li>
+  <div class="main-workout">
+    <ol>
+      <li v-for="(wrkt, index) in listWorkouts" :key="index">
+        <WorkoutWidget :wrkt-data="wrkt" class="widget"/>
+      </li>
+    </ol>
+  </div>
 </template>
 
 <script>
@@ -26,5 +30,9 @@ export default {
 </script>
 
 <style scoped>
+
+.main-workout {
+  overflow-x: hidden;
+}
 
 </style>

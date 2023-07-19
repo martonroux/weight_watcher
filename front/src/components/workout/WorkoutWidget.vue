@@ -39,6 +39,7 @@ export default {
     }
   },
   props: ["wrktData"],
+  emits: ['delWorkout'],
   mounted() {
     this.wrktDataSave = JSON.parse(JSON.stringify(this.wrktData));
   },
@@ -74,6 +75,9 @@ export default {
     revertChanges() {
       const temp = JSON.parse(JSON.stringify(this.wrktDataSave));
       Object.assign(this.wrktData, temp);
+    },
+    deleteWorkout() {
+      this.$emit('delWorkout');
     }
   }
 }
@@ -89,6 +93,7 @@ export default {
   background-color: var(--widget-color);
   border-radius: var(--widget-border-radius);
   box-shadow: var(--widget-box-shadow);
+  overflow-x: hidden;
 }
 
 .widget-banner {
@@ -134,13 +139,5 @@ img {
   transform: translate(-100%, -100%);
   transition: transform 0.3s, width 0.3s;
 }
-
-/*
-write me a code in HTML and CSS of an animation like this:
-two rectangles form an arrow pointing to the right like this >
-when clicked on it, the two rectangles become a cross, like this x
-when clicked again, they get back to the original arrow
-the rectangles are white and rounded. The animation must take 0.5s
- */
 
 </style>

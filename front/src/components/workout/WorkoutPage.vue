@@ -14,7 +14,7 @@ import Button from "@/components/elements/Button.vue";
     <ol>
       <li v-for="(exercise, index) in wrktData['exercises']" :key="index">
         <div class="first-line">
-          <Button :img-url="'delete.png'" style="padding: 5px 7px 5px 7px; margin-right: 10px;" @clicked="openPopUp(index)" v-if="editActive"/>
+          <Button :img-url="'delete.png'" style="padding: 5px 7px 5px 7px; margin-right: 10px; background-color: var(--major-color);" @clicked="openPopUp(index)" v-if="editActive"/>
           <PopUpWindow :open="popUpOpen === index" ref="popup" @closed="removeWorkout">
             <p>Are you sure?</p>
             <p>Deleting is irreversible.</p>
@@ -36,6 +36,15 @@ import Button from "@/components/elements/Button.vue";
           <p>All current changes will be</p>
           <p>overridden.</p>
         </PopUpWindow>
+
+        <Button :text="'Delete workout'" style="padding: 5px 10px 5px 10px; border-radius: var(--widget-border-radius); background-color: var(--major-color)" @clicked="openDeleteWorkoutPopup"/>
+
+        <PopUpWindow :open="popUpOpen === -3" ref="popup" @closed="deleteWorkout" :timer="true">
+          <p>Are you sure?</p>
+          <p>Deleting a workout is IRREVERSIBLE.</p>
+          <p>You will NOT be able to revert changes.</p>
+        </PopUpWindow>
+
       </li>
     </ol>
   </div>
@@ -53,7 +62,7 @@ export default {
     }
   },
   props: ['wrktData', 'workoutNameEdit', 'editActive'],
-  emits: ['doneWorkoutEdit', 'revertChanges'],
+  emits: ['doneWorkoutEdit', 'revertChanges', 'deleteWorkout'],
   components: {
     PopUpWindow
   },
@@ -98,6 +107,15 @@ export default {
       if (isOk) {
         this.$emit('revertChanges');
       }
+    },
+    openDeleteWorkoutPopup() {
+      this.popUpOpen = -3;
+    },
+    deleteWorkout(isOk) {
+      this.popUpOpen = -1;
+      if (isOk) {
+        this.$emit('deleteWorkout');
+      }
     }
   }
 }
@@ -106,6 +124,7 @@ export default {
 <style scoped>
 
 .main-workout-page {
+  overflow-x: hidden;
   width: auto;
   height: auto;
   display: flex;
@@ -140,7 +159,7 @@ export default {
   }
 }
 
-@media (max-width: 330px) {
+@media (max-width: 440px) {
   .add-workout {
     flex-direction: column;
 
