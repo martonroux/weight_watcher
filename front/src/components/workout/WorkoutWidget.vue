@@ -17,7 +17,7 @@ import EditWorkoutButton from "@/components/elements/weight_rep_display/EditWork
         </div>
       </div>
     </div>
-    <WorkoutPage v-if="activeDropDown" :wrkt-data="wrktData" @editActive="toggleEditActive" :workout-name-edit="workoutNameEdit" :edit-active="editActive" @doneWorkoutEdit="submitWorkoutName" @revertChanges="revertChanges"/>
+    <WorkoutPage v-if="activeDropDown" :wrkt-data="wrktData" @editActive="toggleEditActive" :workout-name-edit="workoutNameEdit" :edit-active="editActive" @doneWorkoutEdit="submitWorkoutName" @revertChanges="revertChanges" @deleteWorkout="deleteWorkout"/>
   </div>
 </template>
 <script>
@@ -67,6 +67,8 @@ export default {
     toggleWorkoutNameEdit() {
       if (this.editActive === true) {
         this.workoutNameEdit = true;
+      } else {
+        this.toggleDropDown();
       }
     },
     submitWorkoutName() {
@@ -77,7 +79,7 @@ export default {
       Object.assign(this.wrktData, temp);
     },
     deleteWorkout() {
-      this.$emit('delWorkout');
+      this.$emit('delWorkout', this.wrktData);
     }
   }
 }

@@ -19,10 +19,10 @@ import Button from "@/components/elements/Button.vue";
             <p>Are you sure?</p>
             <p>Deleting is irreversible.</p>
           </PopUpWindow>
-          <p :class="{'tilt-shaking-anim': editActive}" v-if="!exerciseNameEdit" @click="changeExerciseName">
+          <p :class="{'tilt-shaking-anim': editActive}" v-if="!exerciseNameEdit" @click="changeExerciseName(index)">
             {{ exercise['name'] }}
           </p>
-          <EditExerciseName v-if="exerciseNameEdit" @close="submitExerciseName" :exercise-name="exercise['name']" :index="index"/>
+          <EditExerciseName v-if="exerciseNameEdit" @close="submitExerciseName" :exercise-name="wrktData['exercises'][exerciseNameEditIndex]['name']" :index="index"/>
           <RepSetDiv :wrkt-data="exercise" :edit-active="editActive" style="margin-left: auto;"/>
         </div>
         <WeightRepDisplay :reps-list="exercise['list_reps']" :weight-list="exercise['list_weights']" :edit-active="editActive"/>
@@ -58,6 +58,7 @@ export default {
   data () {
     return {
       exerciseNameEdit: false,
+      exerciseNameEditIndex: -1,
       popUpOpen: -1,
     }
   },
@@ -67,9 +68,10 @@ export default {
     PopUpWindow
   },
   methods: {
-    changeExerciseName() {
+    changeExerciseName(index) {
       if (this.editActive) {
         this.exerciseNameEdit = true;
+        this.exerciseNameEditIndex = index;
       }
     },
     submitWorkoutName(newName) {

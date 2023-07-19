@@ -57,16 +57,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-@media (max-width: 500px) {
-  .edit-exercise-name {
-    flex-direction: column;
-  }
-
-  .edit-exercise-name *:not(:last-child) {
-    margin-bottom: 10px;
-  }
+.edit-exercise-name *:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .edit-exercise-name-input {

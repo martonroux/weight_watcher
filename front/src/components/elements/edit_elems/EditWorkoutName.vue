@@ -51,16 +51,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-@media (max-width: 500px) {
-  .edit-workout-name {
-    flex-direction: column;
-  }
-
-  .edit-workout-name *:not(:last-child) {
-    margin-bottom: 10px;
-  }
+.edit-workout-name *:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .edit-workout-name-input {

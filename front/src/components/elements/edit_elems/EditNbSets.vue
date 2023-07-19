@@ -57,16 +57,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-@media (max-width: 500px) {
-  .edit-nb-sets {
-    flex-direction: column;
-  }
-
-  .edit-nb-sets *:not(:last-child) {
-    margin-bottom: 10px;
-  }
+.edit-nb-sets *:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .edit-nb-sets-input {

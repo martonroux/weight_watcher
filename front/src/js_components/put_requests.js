@@ -38,3 +38,39 @@ export function updateWorkout(newWorkout, oldWorkout) {
         console.error(error);
     });
 }
+
+export function putNewWorkout(newWorkout) {
+    fetch(api_link + "/api/put/workout/add_workout", {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({"workout": newWorkout})
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Erreur lors de la requête PUT");
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+export function putDeleteWorkout(toRemove) {
+    fetch(api_link + "/api/put/workout/delete_workout", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"id": toRemove["id"]})
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erreur lors de la requête PUT");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
