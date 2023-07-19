@@ -3,6 +3,7 @@ import RepSetDiv from "@/components/elements/RepSetDiv.vue";
 import WeightRepDisplay from "@/components/elements/weight_rep_display/WeightRepDisplay.vue";
 import EditWorkoutName from "@/components/elements/edit_elems/EditWorkoutName.vue";
 import EditExerciseName from "@/components/elements/edit_elems/EditExerciseName.vue";
+import ChangeExercisesOrder from "@/components/elements/edit_elems/ChangeExercisesOrder.vue";
 import Button from "@/components/elements/Button.vue";
 </script>
 
@@ -28,7 +29,11 @@ import Button from "@/components/elements/Button.vue";
         <WeightRepDisplay :reps-list="exercise['list_reps']" :weight-list="exercise['list_weights']" :edit-active="editActive"/>
       </li>
       <li class="add-workout" v-if="editActive">
-        <Button :text="'Add Exercise'" style="padding: 5px 10px 5px 10px; border-radius: var(--widget-border-radius);" @clicked="addNewWorkout"/>
+        <Button :text="'+'" style="padding: 5px 10px 5px 10px; border-radius: var(--widget-border-radius);" @clicked="addNewWorkout"/>
+      </li>
+      <li class="other-settings" v-if="editActive">
+        <Button :text="'Change order'" style="padding: 5px 10px 5px 10px; border-radius: var(--widget-border-radius);" @clicked="changeOrder"/>
+        <ChangeExercisesOrder v-if="orderEdit" @close="submitOrder" :workout-data="wrktData"/>
         <Button :text="'Revert changes'" style="padding: 5px 10px 5px 10px; border-radius: var(--widget-border-radius);" @clicked="openRevertChangesPopup"/>
 
         <PopUpWindow :open="popUpOpen === -2" ref="popup" @closed="revertChanges">
@@ -59,6 +64,7 @@ export default {
     return {
       exerciseNameEdit: false,
       exerciseNameEditIndex: -1,
+      orderEdit: false,
       popUpOpen: -1,
     }
   },
@@ -74,6 +80,10 @@ export default {
         this.exerciseNameEditIndex = index;
       }
     },
+    changeOrder() {
+      if (this.editActive)
+        this.orderEdit = true;
+    },
     submitWorkoutName(newName) {
       this.$emit('doneWorkoutEdit');
       this.wrktData['name'] = newName;
@@ -81,6 +91,9 @@ export default {
     submitExerciseName(input, index) {
       this.exerciseNameEdit = false;
       this.wrktData['exercises'][index]['name'] = input;
+    },
+    submitOrder() {
+      this.orderEdit = false;
     },
     addNewWorkout() {
       const newExercise = {
@@ -155,6 +168,13 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: row;
+}
+
+.other-settings {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 
   :not(:last-child) {
     margin-right: 10px;
@@ -162,7 +182,7 @@ export default {
 }
 
 @media (max-width: 440px) {
-  .add-workout {
+  .other-settings {
     flex-direction: column;
 
     * {
