@@ -124,7 +124,7 @@
           ]
         },
         {
-          "name": "Skull crushers",
+          "name": "Inclined BP",
           "nb_sets": 3,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
@@ -192,6 +192,11 @@
           ]
         }
       ]
+    },
+    {
+      "id": 637,
+      "name": "New Workout",
+      "exercises": []
     }
   ]
 }
