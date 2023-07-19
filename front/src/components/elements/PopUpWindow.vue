@@ -42,7 +42,9 @@ export default {
       if (isOk === true && this.okText !== 'OK')
         return;
 
-      this.$emit('closed', isOk);
+      setTimeout(() => {
+        this.$emit('closed', isOk);
+      }, 50);
     },
     countDown(newValue) {
       if (this.timer && newValue === true) {
