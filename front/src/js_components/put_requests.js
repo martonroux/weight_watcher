@@ -57,20 +57,23 @@ export function putNewWorkout(newWorkout) {
     });
 }
 
-export function putDeleteWorkout(toRemove) {
-    fetch(api_link + "/api/put/workout/delete_workout", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({"id": toRemove["id"]})
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erreur lors de la requête PUT");
-            }
-        })
-        .catch(error => {
-            console.error(error);
+export async function putDeleteWorkout(toRemove) {
+    try {
+        const response = await fetch(api_link + "/api/put/workout/delete_workout", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({"id": toRemove["id"]})
         });
+
+        if (!response.ok) {
+            throw new Error("Erreur lors de la requête PUT");
+        }
+
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 }

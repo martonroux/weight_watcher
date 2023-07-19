@@ -37,9 +37,11 @@ export default {
         this.listWorkouts = result['data'];
       });
     },
-    deleteWorkout(workout) {
-      putDeleteWorkout(workout);
-      this.updateData();
+    async deleteWorkout(workout) {
+      const returnValue = await putDeleteWorkout(workout);
+
+      if (returnValue === true)
+        this.updateData();
     }
   }
 }
