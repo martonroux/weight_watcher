@@ -6,9 +6,9 @@ import Button from "@/components/elements/Button.vue";
   <div class="edit-workout-name" @keyup.enter="closeWindow(false)" @keyup.esc="closeWindow(true)">
     <h2 style="margin-bottom: 50px">Workout Name</h2>
     <input ref="editWorkoutNameInput" class="edit-workout-name-input" type="text" v-model="input">
-    <div class="button-container">
-      <Button style="background-color: greenyellow" :text="'OK'" @clicked="closeWindow(false)"/>
-      <Button style="background-color: orangered" :text="'UNDO'" @clicked="closeWindow(true)"/>
+    <div class="align-center" style="align-self: center;">
+      <Button :img-url="'close.png'" style="padding: 3px 8px 3px 8px; font-size: 24px; margin-right: 10px" @clicked="closeWindow(true)"/>
+      <Button :img-url="'check_black.png'" style="padding: 5px 8px 5px 8px;" @clicked="closeWindow(false)"/>
     </div>
   </div>
 </template>
@@ -46,12 +46,11 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 9999;
-  backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .edit-workout-name *:not(:last-child) {

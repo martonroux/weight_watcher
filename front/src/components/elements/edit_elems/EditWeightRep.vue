@@ -101,11 +101,11 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 9999;
-  backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .edit-weight-rep li {
