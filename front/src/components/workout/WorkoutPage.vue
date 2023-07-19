@@ -16,10 +16,12 @@ import Button from "@/components/elements/Button.vue";
       <li v-for="(exercise, index) in wrktData['exercises']" :key="index">
         <div class="first-line">
           <Button :img-url="'delete.png'" style="padding: 5px 7px 5px 7px; margin-right: 10px; background-color: var(--major-color);" @clicked="openPopUp(index)" v-if="editActive"/>
+
           <PopUpWindow :open="popUpOpen === index" ref="popup" @closed="removeWorkout">
             <p>Are you sure?</p>
             <p>Deleting is irreversible.</p>
           </PopUpWindow>
+
           <p :class="{'tilt-shaking-anim': editActive}" v-if="!exerciseNameEdit" @click="changeExerciseName(index)">
             {{ exercise['name'] }}
           </p>
@@ -152,7 +154,7 @@ export default {
 }
 
 .widget li:not(:last-child) {
-  margin: 0 0 20px 0;
+  margin: 0 0 30px 0;
 }
 
 .first-line {
