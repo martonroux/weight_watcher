@@ -11,7 +11,7 @@ import EditWeightRep from "@/components/elements/edit_elems/EditWeightRep.vue";
         <Button :text="'+'" style="height: 100%; border-radius: 10px; padding: 10px" @clicked="addNewData"/>
       </li>
       <li v-for="(rep, index) in repsList" :key="index">
-        <div class="weight-rep-item" :class="{'weight-rep-item-active': index > 0}" :style="{cursor: this.editActive ? 'pointer' : 'default'}">
+        <div class="weight-rep-item" :class="{'weight-rep-item-active': index > 0}" :style="{cursor: editActive ? 'pointer' : 'default'}">
           <WeightRepSingleDisplay :reps-list="rep" :weight-list="weightList[index]" :edit-active="editActive" @click="changeWeightRep(rep, weightList[index])"/>
         </div>
         <EditWeightRep v-if="editWeightRep !== -1" :rep-data="repInput" :weight-data="weightInput" :index="editWeightRep" @close="handleWeightRepModif"/>
