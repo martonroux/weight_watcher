@@ -1,6 +1,6 @@
 import {putNewWorkout} from "@/js_components/put_requests";
 
-export function addWorkout(allData) {
+export async function addWorkout(allData) {
     let idsList = [];
 
     for (let i = 0; i < allData.length; i++) {
@@ -19,5 +19,5 @@ export function addWorkout(allData) {
         "exercises": []
     }
 
-    putNewWorkout(newWorkout);
+    return await putNewWorkout(newWorkout);
 }

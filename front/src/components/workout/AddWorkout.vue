@@ -15,9 +15,11 @@ export default {
   props: ['allWrkts'],
   emits: ['updateData'],
   methods: {
-    addNewWorkout() {
-      addWorkout(this.allWrkts);
-      this.$emit('updateData');
+    async addNewWorkout() {
+      const returnValue = await addWorkout(this.allWrkts);
+
+      if (returnValue === true)
+        this.$emit('updateData');
     }
   }
 }

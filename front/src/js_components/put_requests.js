@@ -39,22 +39,25 @@ export function updateWorkout(newWorkout, oldWorkout) {
     });
 }
 
-export function putNewWorkout(newWorkout) {
-    fetch(api_link + "/api/put/workout/add_workout", {
-    method: "PUT",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({"workout": newWorkout})
-    })
-    .then(response => {
+export async function putNewWorkout(newWorkout) {
+    try {
+        const response = await fetch(api_link + "/api/put/workout/add_workout", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ "workout": newWorkout })
+        });
+
         if (!response.ok) {
             throw new Error("Erreur lors de la requête PUT");
         }
-    })
-    .catch(error => {
+
+        return true;
+    } catch (error) {
         console.error(error);
-    });
+        return false;
+    }
 }
 
 export async function putDeleteWorkout(toRemove) {
