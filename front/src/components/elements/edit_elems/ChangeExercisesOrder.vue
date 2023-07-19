@@ -13,10 +13,12 @@ import Button from "@/components/elements/Button.vue";
     <ol id="order-list">
       <li v-for="(exercise, index) in exerciseList" :key="index">
         <div class="change-order-content"
-             @mousemove="updatePosition"
+             @touchstart="event => startTracking(event, index)"
              @touchmove="updatePosition"
-             @mouseup="stopTracking"
              @touchend="stopTracking"
+             @mousedown="event => startTracking(event, index)"
+             @mousemove="updatePosition"
+             @mouseup="stopTracking"
              :style="{
                position: 'relative',
                top: (indexModif === index) ? (posY - mouseInitY) + 'px' : '0',
@@ -26,7 +28,7 @@ import Button from "@/components/elements/Button.vue";
           <div class="menu-btn" id="menu-btn"
                @touchstart="event => startTracking(event, index)"
                @mousedown="event => startTracking(event, index)"
-          :style="{cursor: (indexModif !== index) ? 'grab' : 'grabbing'}">
+               :style="{cursor: (indexModif !== index) ? 'grab' : 'grabbing'}">
             <div>
               <span class="line-1"></span>
               <span class="line-2"></span>
@@ -72,10 +74,11 @@ export default {
     updatePosition(event) {
       if (this.indexModif === -1)
         return;
-      const isTouch = event.type === "touchmove";
 
-      const clientX = isTouch ? event.touches[0].clientX : event.clientX;
-      const clientY = isTouch ? event.touches[0].clientY : event.clientY;
+      const isTouch = event.type.startsWith("touch");
+
+      const clientX = isTouch ? event.changedTouches[0].clientX : event.clientX;
+      const clientY = isTouch ? event.changedTouches[0].clientY : event.clientY;
 
       this.posX = clientX;
       this.posY = clientY;
@@ -84,7 +87,7 @@ export default {
     startTracking(event, index) {
       if (this.indexModif === -1)
         this.indexModif = index;
-      const isTouch = event.type === "touchmove";
+      const isTouch = event.type.startsWith("touch");
 
       const clientX = isTouch ? event.touches[0].clientX : event.clientX;
       const clientY = isTouch ? event.touches[0].clientY : event.clientY;
@@ -97,7 +100,7 @@ export default {
       this.indexModif = -1;
     },
     restartTracking(event) {
-      const isTouch = event.type === "touchmove";
+      const isTouch = event.type.startsWith("touch");
 
       this.mouseInitY = isTouch ? event.touches[0].clientY : event.clientY;
       this.updatePosition(event);
@@ -160,6 +163,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 300px;
+  touch-action: none;
 }
 
 @media (max-width: 400px) {
