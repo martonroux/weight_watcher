@@ -8,7 +8,7 @@ import Button from "@/components/elements/Button.vue";
       <slot></slot>
     </div>
     <div class="row-div">
-      <Button :text="okText" :style="{'background-color': (this.okText !== 'OK') ? 'gray' : 'var(--accentuation-color)'}" @clicked="closePopup(true)"/>
+      <Button :text="okText" :style="{'background-color': (okText !== 'OK') ? 'gray' : 'var(--accentuation-color)'}" @clicked="closePopup(true)"/>
       <Button :text="'Cancel'" @clicked="closePopup(false)"/>
     </div>
   </div>
