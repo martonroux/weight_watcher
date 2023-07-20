@@ -72,8 +72,9 @@ export default {
       } else {
         this.activePopup = false;
         if (escape === false) {
-          putNewActiveWorkout(this.allWrkts[this.selected]);
-          this.$router.push("/");
+          putNewActiveWorkout(this.allWrkts[this.selected]).then(() => {
+            this.$router.push("/");
+          });
         }
       }
     },
