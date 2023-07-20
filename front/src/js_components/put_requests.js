@@ -1,4 +1,4 @@
-const api_link = "https://api.martonroux.com";
+const api_link = "http://127.0.0.1:8000"; // TODO: PUT SERVER IP BACK
 
 
 function compareDictionnaries(dict1, dict2) {
@@ -68,6 +68,27 @@ export async function putDeleteWorkout(toRemove) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({"id": toRemove["id"]})
+        });
+
+        if (!response.ok) {
+            throw new Error("Erreur lors de la requête PUT");
+        }
+
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+export async function putNewActiveWorkout(activeWorkout) {
+    try {
+        const response = await fetch(api_link + "/api/put/workout/change_active_workout", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({"id": activeWorkout["id"]})
         });
 
         if (!response.ok) {

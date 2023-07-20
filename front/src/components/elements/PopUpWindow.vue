@@ -9,7 +9,7 @@ import Button from "@/components/elements/Button.vue";
     </div>
     <div class="row-div">
       <Button :text="okText" :style="{'background-color': (okText !== 'OK') ? 'gray' : 'var(--accentuation-color)'}" @clicked="closePopup(true)"/>
-      <Button :text="'Cancel'" @clicked="closePopup(false)"/>
+      <Button :text="'Cancel'" @clicked="closePopup(false)" v-if="!onlyOk"/>
     </div>
   </div>
 </template>
@@ -27,6 +27,10 @@ export default {
       required: true
     },
     timer: {
+      type: Boolean,
+      required: false
+    },
+    onlyOk: {
       type: Boolean,
       required: false
     }

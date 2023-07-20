@@ -34,8 +34,6 @@ export default {
     onClick(id) {
       const element = this.listRedirects.find(item => item.id === id);
 
-      element.isClicked = true;
-
       if (element) {
         this.$router.push(element.link);
       } else {

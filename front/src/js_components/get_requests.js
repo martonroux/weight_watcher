@@ -1,4 +1,5 @@
-const api_link = "https://api.martonroux.com";
+const api_link = "http://127.0.0.1:8000"; // TODO: PUT SERVER IP BACK
+
 
 export function fetchData() {
     fetch(api_link + '/api/data')
@@ -39,6 +40,22 @@ export async function fetchWorkouts() {
 
         if (data['error'] === "False") {
             return data;
+        } else {
+            return NaN;
+        }
+    } catch (error) {
+        console.log("ERROR OCCURED: ", error);
+        return NaN
+    }
+}
+
+export async function fetchActiveWorkout() {
+    try {
+        const response = await fetch(api_link + '/api/get/workout/get_active_workout');
+        const data = await response.json();
+
+        if (data['error'] === "False") {
+            return data['data'];
         } else {
             return NaN;
         }

@@ -1,6 +1,6 @@
 <script setup>
 import RepSetDiv from "@/components/elements/RepSetDiv.vue";
-import WeightRepDisplay from "@/components/elements/weight_rep_display/WeightRepDisplay.vue";
+import WeightRepDisplay from "@/components/workout/weight_rep_display/WeightRepDisplay.vue";
 import EditWorkoutName from "@/components/elements/edit_elems/EditWorkoutName.vue";
 import EditExerciseName from "@/components/elements/edit_elems/EditExerciseName.vue";
 import ChangeExercisesOrder from "@/components/elements/edit_elems/ChangeExercisesOrder.vue";

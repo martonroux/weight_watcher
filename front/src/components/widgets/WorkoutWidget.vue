@@ -1,6 +1,6 @@
 <script setup>
 import WorkoutPage from "@/components/workout/WorkoutPage.vue";
-import EditWorkoutButton from "@/components/elements/weight_rep_display/EditWorkoutButton.vue";
+import EditWorkoutButton from "@/components/workout/weight_rep_display/EditWorkoutButton.vue";
 </script>
 
 <template>
@@ -118,6 +118,11 @@ export default {
   color: var(--accentuation-color);
 }
 
+img {
+  width: var(--h2-font-size);
+  height: var(--h2-font-size);
+}
+
 .dropdown-button {
   width: 30px;
   height: 30px;
@@ -130,11 +135,6 @@ export default {
   position: relative;
   top: 40%;
   left: 5%;
-}
-
-img {
-  width: var(--h2-font-size);
-  height: var(--h2-font-size);
 }
 
 .dropdown-button span {

@@ -1,11 +1,15 @@
 <script setup>
-import WorkoutWidget from "@/components/workout/WorkoutWidget.vue";
+import WorkoutWidget from "@/components/widgets/WorkoutWidget.vue";
 import AddWorkout from "@/components/workout/AddWorkout.vue";
+import ActivateWorkoutWidget from "@/components/widgets/ActivateWorkoutWidget.vue";
 </script>
 
 <template>
   <div class="main-workout">
     <ol>
+      <li>
+        <ActivateWorkoutWidget :all-wrkts="listWorkouts"/>
+      </li>
       <li v-for="(wrkt, index) in listWorkouts" :key="index">
         <WorkoutWidget :wrkt-data="wrkt" class="widget" @delWorkout="deleteWorkout"/>
       </li>

@@ -1,6 +1,6 @@
 <script setup>
 import Button from "@/components/elements/Button.vue";
-import WeightRepSingleDisplay from "@/components/elements/weight_rep_display/WeightRepSingleDisplay.vue";
+import WeightRepSingleDisplay from "@/components/workout/weight_rep_display/WeightRepSingleDisplay.vue";
 import EditWeightRep from "@/components/elements/edit_elems/EditWeightRep.vue";
 </script>
 

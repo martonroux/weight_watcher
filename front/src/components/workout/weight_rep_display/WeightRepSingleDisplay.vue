@@ -21,7 +21,6 @@ export default {
 
 .widget {
   background-color: #151b2d;
-  border: 2px dot-dash var(--text-white);
   border-radius: var(--widget-border-radius);
   display: flex;
   justify-content: flex-start;

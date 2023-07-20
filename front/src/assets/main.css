@@ -14,6 +14,15 @@
   }
 }
 
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .tilt-shaking-anim {
   animation: tilt-shaking 0.26s infinite;
   cursor: pointer;
@@ -66,7 +75,7 @@ button {
   border-color: transparent;
   display: inline-block;
   background-color: var(--accentuation-color);
-  border-radius: 20px;
+  border-radius: var(--widget-border-radius);
   cursor: pointer;
 
   /* CONTAINING TEXT */

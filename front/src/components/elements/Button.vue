@@ -15,6 +15,7 @@ export default {
     }
   },
   props: ['text', 'imgUrl'],
+  emits: ['clicked'],
   methods: {
     handleClick() {
       this.btnClicked = true;
