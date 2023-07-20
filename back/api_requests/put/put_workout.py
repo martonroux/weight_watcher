@@ -1,3 +1,4 @@
+import time
 from utils.write_data import write_data
 from utils.load_data import load_data
 from fastapi import HTTPException
@@ -70,5 +71,32 @@ def put_workout(app):
 
         if found is False:
             raise HTTPException(status_code=400, detail="Workout with corresponding ID was not found")
+
+        write_data(data)
+
+    @app.put("/api/put/workout/change_active_workout")
+    def put_data(workout_id: WorkoutId = None):
+        if workout_id is None:
+            raise HTTPException(status_code=400, detail="MUST provide workout ID")
+
+        id = workout_id.id
+        data = load_data()
+        workout = {}
+        found = False
+
+        for i in range(len(data['workouts'])):
+            if data['workouts'][i]['id'] == id:
+                found = True
+                workout = data['workouts'][i]
+                break
+
+        if found is False:
+            raise HTTPException(status_code=400, detail="Workout with corresponding ID was not found")
+
+        data['active_workout'] = workout
+        data['active_workout']['start_date'] = time.time()
+        for exercise in data['active_workout']['exercises']:
+            exercise['list_weights'] = []
+            exercise['list_reps'] = []
 
         write_data(data)

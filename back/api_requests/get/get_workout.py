@@ -1,4 +1,4 @@
-from data_manager.workout_data import get_exercise_data, get_all_workouts, get_all_exercises
+from data_manager.workout_data import get_exercise_data, get_all_workouts, get_all_exercises, get_active_workout
 from fastapi import HTTPException
 
 
@@ -57,4 +57,13 @@ def get_workout(app):
         return {
             "error": "False",
             "data": workout_data['data']
+        }
+
+    @app.get("/api/get/workout/get_active_workout")
+    def get_data():
+        workout = get_active_workout()
+
+        return {
+            "error": "False",
+            "data": workout
         }

@@ -73,9 +73,13 @@ def get_all_exercises(workout: str) -> dict:                        # GET LIST O
     }
 
 
+def get_active_workout() -> dict:
+    data = load_data()
+
+    return data['active_workout']
+
+
 # <------------------- PUT FUNCTIONS ------------------->
-
-
 def put_new_workout(workout_name: str) -> dict:                     # PUT NEW WORKOUT INTO DATA
     return {
         "error": "False"
