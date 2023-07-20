@@ -19,7 +19,7 @@ export default {
     return {
       growthPercent: 0,
       firstValue: 0,
-      activeWorkout: {}
+      activeWorkout: {"id": -1}
     }
   },
   mounted() {
