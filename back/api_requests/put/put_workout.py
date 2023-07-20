@@ -97,6 +97,8 @@ def put_workout(app):
         data['active_workout']['name'] = workout['name']
         data['active_workout']['id'] = workout['id']
         data['active_workout']['start_date'] = time.time()
+        data['active_workout']['exercises'] = []
+        data['active_workout']['act_exercise'] = ""
         for exercise in workout['exercises']:
             data['active_workout']['exercises'].append({
                 "name": exercise['name'],
@@ -107,4 +109,34 @@ def put_workout(app):
                 "list_reps": []
             })
 
+        write_data(data)
+
+    @app.put("/api/put/workout/update_active_workout")
+    def put_app(workout_update: WorkoutUpdate = None):
+        if workout_update is None:
+            raise HTTPException(status_code=400, detail="MUST provide workout data")
+
+        data = load_data()
+        data['active_workout'] = workout_update.workout
+        write_data(data)
+
+    @app.put("/api/put/workout/end_active_workout")
+    def put_app(workout_update: WorkoutUpdate = None):
+        if workout_update is None:
+            raise HTTPException(status_code=400, detail="MUST provide workout data")
+
+        data = load_data()
+        workout = workout_update.workout
+
+        data['active_workout']['id'] = -1
+
+        for wrkt in data['workouts']:
+            if wrkt['id'] == workout['id']:
+                for i in range(len(wrkt['exercises'])):
+                    for j in range(len(workout['exercises'])):
+                        if wrkt['exercises'][i]['name'] == workout['exercises'][j]['name']:
+                            if len(workout['exercises'][j]['list_reps']) == 0:
+                                continue
+                            wrkt['exercises'][i]['list_reps'].append(workout['exercises'][j]['list_reps'])
+                            wrkt['exercises'][i]['list_weights'].append(workout['exercises'][j]['list_weights'])
         write_data(data)

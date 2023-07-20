@@ -22,51 +22,124 @@
           "nb_sets": 4,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              50,
+              55,
+              60,
+              50
+            ]
+          ],
+          "list_reps": [
+            [
+              12,
+              10,
+              3,
+              10
+            ]
+          ]
         },
         {
           "name": "Inclined BP",
           "nb_sets": 4,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              12,
+              14,
+              14,
+              12
+            ]
+          ],
+          "list_reps": [
+            [
+              12,
+              10,
+              7,
+              8
+            ]
+          ]
         },
         {
           "name": "Dips",
           "nb_sets": 3,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              2.3,
+              6.7
+            ]
+          ],
+          "list_reps": [
+            [
+              11,
+              10
+            ]
+          ]
         },
         {
           "name": "Chest flies",
           "nb_sets": 3,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              52,
+              52,
+              45
+            ]
+          ],
+          "list_reps": [
+            [
+              11,
+              9,
+              10
+            ]
+          ]
         },
         {
           "name": "Triceps pulldown",
           "nb_sets": 3,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              11.3,
+              11.3,
+              11.3
+            ]
+          ],
+          "list_reps": [
+            [
+              11,
+              8,
+              7
+            ]
+          ]
         },
         {
-          "name": "Inclined BP",
+          "name": "Skull crushers",
           "nb_sets": 3,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              15,
+              15,
+              15
+            ]
+          ],
+          "list_reps": [
+            [
+              12,
+              10,
+              9
+            ]
+          ]
         }
-      ],
-      "start_date": 1689860901.347946
+      ]
     },
     {
       "id": 1,
@@ -77,11 +150,43 @@
           "nb_sets": 4,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
-          "list_weights": [],
-          "list_reps": []
+          "list_weights": [
+            [
+              1
+            ],
+            [
+              45
+            ]
+          ],
+          "list_reps": [
+            [
+              1
+            ],
+            [
+              12
+            ]
+          ]
         },
         {
           "name": "Pull ups",
+          "nb_sets": 3,
+          "nb_reps_low": 8,
+          "nb_reps_high": 12,
+          "list_weights": [
+            [
+              4.5,
+              6.7
+            ]
+          ],
+          "list_reps": [
+            [
+              12,
+              11
+            ]
+          ]
+        },
+        {
+          "name": "Biceps curls",
           "nb_sets": 3,
           "nb_reps_low": 8,
           "nb_reps_high": 12,
@@ -97,11 +202,11 @@
     }
   ],
   "active_workout": {
-    "id": 0,
-    "name": "Pecs TRicepS",
+    "id": -1,
+    "name": "Dos Biceps",
     "exercises": [
       {
-        "name": "Bench Press",
+        "name": "Lateral pull-downs",
         "nb_sets": 4,
         "nb_reps_low": 8,
         "nb_reps_high": 12,
@@ -109,15 +214,7 @@
         "list_reps": []
       },
       {
-        "name": "Inclined BP",
-        "nb_sets": 4,
-        "nb_reps_low": 8,
-        "nb_reps_high": 12,
-        "list_weights": [],
-        "list_reps": []
-      },
-      {
-        "name": "Dips",
+        "name": "Pull ups",
         "nb_sets": 3,
         "nb_reps_low": 8,
         "nb_reps_high": 12,
@@ -125,23 +222,7 @@
         "list_reps": []
       },
       {
-        "name": "Chest flies",
-        "nb_sets": 3,
-        "nb_reps_low": 8,
-        "nb_reps_high": 12,
-        "list_weights": [],
-        "list_reps": []
-      },
-      {
-        "name": "Triceps pulldown",
-        "nb_sets": 3,
-        "nb_reps_low": 8,
-        "nb_reps_high": 12,
-        "list_weights": [],
-        "list_reps": []
-      },
-      {
-        "name": "Inclined BP",
+        "name": "Biceps curls",
         "nb_sets": 3,
         "nb_reps_low": 8,
         "nb_reps_high": 12,
@@ -149,6 +230,7 @@
         "list_reps": []
       }
     ],
-    "start_date": 1689860901.347946
+    "start_date": 1689867034.6859462,
+    "act_exercise": "Biceps curls"
   }
 }
