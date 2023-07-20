@@ -29,14 +29,12 @@ export default {
     closeWindow(escape) {
       if (escape === false) {
         const input = this.input;
-        const index = this.index;
 
-        this.$emit('close', input, index);
+        this.$emit('close', input);
       } else {
         const input = this.exerciseName;
-        const index = this.index;
 
-        this.$emit('close', input, index);
+        this.$emit('close', input);
       }
     }
   }

@@ -25,7 +25,7 @@ import Button from "@/components/elements/Button.vue";
           <p :class="{'tilt-shaking-anim': editActive}" v-if="!exerciseNameEdit" @click="changeExerciseName(index)">
             {{ exercise['name'] }}
           </p>
-          <EditExerciseName v-if="exerciseNameEdit" @close="submitExerciseName" :exercise-name="wrktData['exercises'][exerciseNameEditIndex]['name']" :index="index"/>
+          <EditExerciseName v-if="exerciseNameEditIndex === index && exerciseNameEdit" @close="submitExerciseName" :exercise-name="wrktData['exercises'][exerciseNameEditIndex]['name']" :index="index"/>
           <RepSetDiv :wrkt-data="exercise" :edit-active="editActive" style="margin-left: auto;"/>
         </div>
         <WeightRepDisplay :reps-list="exercise['list_reps']" :weight-list="exercise['list_weights']" :edit-active="editActive"/>
@@ -90,9 +90,9 @@ export default {
       this.$emit('doneWorkoutEdit');
       this.wrktData['name'] = newName;
     },
-    submitExerciseName(input, index) {
+    submitExerciseName(input) {
       this.exerciseNameEdit = false;
-      this.wrktData['exercises'][index]['name'] = input;
+      this.wrktData['exercises'][this.exerciseNameEditIndex]['name'] = input;
     },
     submitOrder() {
       this.orderEdit = false;
