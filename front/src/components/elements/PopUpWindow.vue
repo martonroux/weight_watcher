@@ -70,6 +70,7 @@ export default {
 </script>
 
 <style scoped>
+
 .popup-window {
   position: fixed;
   top: 0;

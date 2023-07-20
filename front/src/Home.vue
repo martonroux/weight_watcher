@@ -5,7 +5,7 @@ import ActiveWorkoutWidget from "@/components/widgets/ActiveWorkoutWidget.vue";
 
 <template>
   <div class="widget-container">
-    <ActiveWorkoutWidget v-if="activeWorkout['id'] !== -1" :workout="activeWorkout"/>
+    <ActiveWorkoutWidget v-if="activeWorkout['id'] !== -1" :workout="activeWorkout" @end-workout="endWorkout"/>
     <StatsWidget :growth-percent="growthPercent" :additional-text="': body weight'"/>
     <StatsWidget :growth-percent="firstValue" :additional-text="': workout weight'"/>
   </div>
@@ -35,6 +35,11 @@ export default {
     fetchActiveWorkout().then(result => {
       this.activeWorkout = result;
     });
+  },
+  methods: {
+    endWorkout() {
+      this.activeWorkout['id'] = -1;
+    }
   }
 }
 </script>

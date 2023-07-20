@@ -1,4 +1,4 @@
-const api_link = "https://api.martonroux.com";
+const api_link = "http://127.0.0.1:8000"; // TODO: PUT SERVER IP BACK
 
 
 export function fetchData() {

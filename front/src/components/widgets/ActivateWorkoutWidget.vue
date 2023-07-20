@@ -36,7 +36,7 @@ import PopUpWindow from "@/components/elements/PopUpWindow.vue";
       </div>
     </div>
     <PopUpWindow :open="warningPopUpOpen" :only-ok="true" ref="popup" @closed="closeWarningPopUp" style="margin: 10px">
-      <p>You need to select a workout before going forward.</p>
+      <p>{{ warningText }}</p>
     </PopUpWindow>
   </div>
 </template>
@@ -49,7 +49,8 @@ export default {
     return {
       activePopup: false,
       selected: -1,
-      warningPopUpOpen: false
+      warningPopUpOpen: false,
+      warningText: ''
     }
   },
   props: ["allWrkts"],
@@ -64,6 +65,10 @@ export default {
     closeWindow(escape) {
       if (this.selected === -1 && escape === false) {
         this.warningPopUpOpen = true;
+        this.warningText = "You need to select a workout before going forward.";
+      } else if (this.allWrkts[this.selected]['exercises'].length === 0) {
+        this.warningPopUpOpen = true;
+        this.warningText = "You cannot select a workout without any exercises defined in it."
       } else {
         this.activePopup = false;
         if (escape === false) {

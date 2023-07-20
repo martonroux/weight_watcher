@@ -1,5 +1,7 @@
 <script setup>
 import Button from "@/components/elements/Button.vue";
+import PopUpWindow from "@/components/elements/PopUpWindow.vue";
+import SwitchActiveExercise from "@/components/workout/SwitchActiveExercise.vue";
 </script>
 
 <template>
@@ -19,22 +21,46 @@ import Button from "@/components/elements/Button.vue";
     <div class="active-exercise">
       <div class="row" style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center;">
         <h2 style="font-size: var(--body-font-size); justify-self: flex-start; margin-right: auto;">{{ activeExercise }}</h2>
-        <Button style="padding: 5px 6px 3px 7px" :img-url="'swap.png'"></Button>
-        <Button style="padding: 5px 6px 3px 7px" :img-url="'forward-button.png'"></Button>
+        <Button style="padding: 5px 6px 3px 7px" :img-url="'swap.png'" @clicked="toggleSwitchExercise"></Button>
+        <Button style="padding: 5px 6px 3px 7px" :img-url="'forward-button.png'" @clicked="forwardExercise"></Button>
       </div>
     </div>
+    <div class="row" style="display: flex; flex-direction: row; margin-top: 20px; align-items: stretch; justify-content: space-between;">
+      <div class="number-sets">
+        <p>{{ numberSets }}</p>
+      </div>
+      <div class="weight-rep-modif-display" style="margin-right: 10px">
+        <input ref="editRepInputRef" class="edit-weight-rep-input" type="number" inputmode="decimal" placeholder="reps" v-model="editRepInput"/>
+        <input ref="editWeightInputRef" class="edit-weight-rep-input" type="number" inputmode="decimal" placeholder="kg" v-model="editWeightInput"/>
+      </div>
+      <Button style="padding: 5px 6px 3px 7px" :text="'Add'" @clicked="addNewWeightRep"></Button>
+    </div>
+    <Button :text="'End workout'" style="padding: 5px 6px 3px 7px; margin-top: 20px;" @clicked="endWorkout"/>
   </div>
+  <SwitchActiveExercise v-if="switchActiveExercise" :exercises="workout['exercises']" @new-exercise="switchExercise"/>
+  <PopUpWindow :open="warningPopUpOpen" ref="popup" @closed="closeWarningPopUp" style="margin: 10px">
+    <p>This was the last exercise. Would you like to end the workout?</p>
+  </PopUpWindow>
 </template>
 
 <script>
+import {putUpdateActiveWorkout} from "@/js_components/put_requests";
+import {putEndActiveWorkout} from "@/js_components/put_requests";
+
 export default {
   data () {
     return {
       time: '',
-      activeExercise: ''
+      activeExercise: '',
+      warningPopUpOpen: false,
+      switchActiveExercise: false,
+      numberSets: '1',
+      editRepInput: '',
+      editWeightInput: ''
     }
   },
   props: ['workout'],
+  emits: ['endWorkout'],
   mounted() {
     this.updateTime();
   },
@@ -42,8 +68,20 @@ export default {
     'workout': {
       immediate: true,
       handler() {
-        if (this.workout && this.workout['exercises'] && this.workout['exercises'].length > 0) {
-          this.activeExercise = this.workout['exercises'][0]['name'];
+        if (this.workout) {
+          if (this.workout['act_exercise'] !== '') {
+            this.activeExercise = this.workout['act_exercise'];
+          } else if (this.workout['exercises'] && this.workout['exercises'].length > 0) {
+            this.activeExercise = this.workout['exercises'][0]['name'];
+            this.workout['act_exercise'] = this.activeExercise;
+          }
+          if (this.workout['exercises']) {
+            for (let i = 0; i < this.workout['exercises'].length; i++) {
+              if (this.workout['exercises'][i]['name'] === this.activeExercise) {
+                this.numberSets = this.workout['exercises'][i]['list_reps'].length + 1;
+              }
+            }
+          }
         }
       }
     }
@@ -68,6 +106,75 @@ export default {
     updateTime() {
       this.getCurrentTime();
       setTimeout(() => this.updateTime(), 1000);
+    },
+    closeWarningPopUp(isOk) {
+      this.warningPopUpOpen = false;
+
+      if (isOk) {
+        this.endWorkout();
+      }
+    },
+    forwardExercise() {
+      const current = this.activeExercise;
+
+      for (let i = 0; i < this.workout['exercises'].length; i++) {
+        if (this.workout['exercises'][i]['name'] === current) {
+          i++;
+          if (i === this.workout['exercises'].length) {
+            this.warningPopUpOpen = true;
+          } else {
+            this.activeExercise = this.workout['exercises'][i]['name'];
+            this.workout['act_exercise'] = this.activeExercise;
+          }
+          break;
+        }
+      }
+      for (let i = 0; i < this.workout['exercises'].length; i++) {
+        if (this.workout['exercises'][i]['name'] === this.activeExercise) {
+          this.numberSets = this.workout['exercises'][i]['list_reps'].length + 1;
+        }
+      }
+      putUpdateActiveWorkout(this.workout);
+    },
+    toggleSwitchExercise() {
+      this.switchActiveExercise = true;
+    },
+    switchExercise(newExercise) {
+      this.switchActiveExercise = false;
+      this.activeExercise = newExercise;
+      this.workout['act_exercise'] = this.activeExercise;
+      for (let i = 0; i < this.workout['exercises'].length; i++) {
+        if (this.workout['exercises'][i]['name'] === this.activeExercise) {
+          this.numberSets = this.workout['exercises'][i]['list_reps'].length + 1;
+        }
+      }
+      putUpdateActiveWorkout(this.workout);
+    },
+    addNewWeightRep() {
+      if (this.editRepInput === '')
+        return;
+      const reps = parseFloat(this.editRepInput);
+      let weight = parseFloat(this.editWeightInput);
+
+      if (this.editWeightInput === '')
+        weight = 0;
+      for (let i = 0; i < this.workout['exercises'].length; i++) {
+        if (this.workout['exercises'][i]['name'] === this.activeExercise) {
+          this.workout['exercises'][i]['list_reps'].push(reps);
+          this.workout['exercises'][i]['list_weights'].push(weight);
+          this.numberSets++;
+          break;
+        }
+      }
+      this.editRepInput = '';
+      this.editWeightInput = '';
+      putUpdateActiveWorkout(this.workout);
+    },
+    endWorkout() {
+      putEndActiveWorkout(this.workout);
+      setTimeout(() => {
+        this.$emit('endWorkout');
+      }, 200);
     }
   }
 }
@@ -93,7 +200,7 @@ export default {
   align-items: center;
 
   .circle {
-    margin-right: 20px;
+    margin-right: 10px;
   }
 }
 
@@ -143,6 +250,35 @@ export default {
   width: 32%;
   transform: translate(8%, 0%);
   animation: rotate 20s linear infinite;
+}
+
+.weight-rep-modif-display {
+  background-color: var(--backround-color);
+  border-radius: var(--widget-border-radius);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+}
+
+.edit-weight-rep-input {
+  font-size: var(--body-font-size);
+  color: var(--text-white);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0 2px 0 10px;
+  width: 30%;
+}
+
+.number-sets {
+  height: auto;
+  width: auto;
+  border-radius: var(--widget-border-radius);
+  border: 2px solid var(--accentuation-color);
+  padding: 5px 10px 5px 10px;
+  margin-right: 10px;
 }
 
 </style>
