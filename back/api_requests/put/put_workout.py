@@ -1,3 +1,4 @@
+import copy
 import time
 from utils.write_data import write_data
 from utils.load_data import load_data
@@ -93,10 +94,17 @@ def put_workout(app):
         if found is False:
             raise HTTPException(status_code=400, detail="Workout with corresponding ID was not found")
 
-        data['active_workout'] = workout
+        data['active_workout']['name'] = workout['name']
+        data['active_workout']['id'] = workout['id']
         data['active_workout']['start_date'] = time.time()
-        for exercise in data['active_workout']['exercises']:
-            exercise['list_weights'] = []
-            exercise['list_reps'] = []
+        for exercise in workout['exercises']:
+            data['active_workout']['exercises'].append({
+                "name": exercise['name'],
+                "nb_sets": exercise['nb_sets'],
+                "nb_reps_low": exercise['nb_reps_low'],
+                "nb_reps_high": exercise['nb_reps_high'],
+                "list_weights": [],
+                "list_reps": []
+            })
 
         write_data(data)
