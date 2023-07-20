@@ -137,6 +137,6 @@ def put_workout(app):
                         if wrkt['exercises'][i]['name'] == workout['exercises'][j]['name']:
                             if len(workout['exercises'][j]['list_reps']) == 0:
                                 continue
-                            wrkt['exercises'][i]['list_reps'].append(workout['exercises'][j]['list_reps'])
-                            wrkt['exercises'][i]['list_weights'].append(workout['exercises'][j]['list_weights'])
+                            wrkt['exercises'][i]['list_reps'].insert(0, workout['exercises'][j]['list_reps'])
+                            wrkt['exercises'][i]['list_weights'].insert(0, workout['exercises'][j]['list_weights'])
         write_data(data)
