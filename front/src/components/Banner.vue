@@ -19,7 +19,6 @@ import DropdownMenu from "@/components/DropdownMenu.vue";
 </template>
 
 <script>
-
 export default {
   data() {
     return {

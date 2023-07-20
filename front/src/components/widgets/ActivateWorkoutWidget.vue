@@ -5,11 +5,11 @@ import PopUpWindow from "@/components/elements/PopUpWindow.vue";
 
 <template>
   <div class="activate-workout-widget">
-    <h2>Activate workout</h2>
+    <h2>Start session</h2>
     <Button :text="'>'" style="padding: 5px 10px 5px 10px; border-radius: var(--widget-border-radius)" @clicked="togglePopup"/>
     <div class="activate-workout-popup" v-if="activePopup">
       <div class="activate-workout-title">
-        <h2>Activate workout</h2>
+        <p style="font-size: var(--h2-font-size)">Select workout to track</p>
       </div>
       <ol>
         <li v-for="(wrkt, index) in allWrkts" :key="index">
@@ -66,7 +66,7 @@ export default {
       if (this.selected === -1 && escape === false) {
         this.warningPopUpOpen = true;
         this.warningText = "You need to select a workout before going forward.";
-      } else if (this.allWrkts[this.selected]['exercises'].length === 0) {
+      } else if (escape === false && this.allWrkts[this.selected]['exercises'].length === 0) {
         this.warningPopUpOpen = true;
         this.warningText = "You cannot select a workout without any exercises defined in it."
       } else {
