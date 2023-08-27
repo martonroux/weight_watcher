@@ -1,7 +1,5 @@
 from typing import List
-from fastapi import Query
 from pydantic import BaseModel
-import os
 import json
 
 
@@ -22,7 +20,7 @@ class Quiz(BaseModel):
 def put_janka_quiz(app):
     @app.put("/update-janka-quiz/")
     async def update_janka_quiz(quiz_data: Quiz):
-        absolute_path = "/janka_quiz/public/quiz.json"
+        absolute_path = "/home/ubuntu/janka-quiz/dist/quiz.json"
 
         try:
             with open(absolute_path, "w") as f:

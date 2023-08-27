@@ -4,6 +4,7 @@ from api_requests.get.get_body_weight import get_body_weight
 from api_requests.get.get_workout import get_workout
 from api_requests.put.put_workout import put_workout
 from api_requests.put.put_body_weight import put_body_weight
+from api_requests.put.janka_quiz import put_janka_quiz
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 
