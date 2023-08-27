@@ -24,6 +24,8 @@ def get_data():
     return "Hello world!"
 
 
+put_janka_quiz(app)     # TODO: REMOVE THIS?
+
 get_body_weight(app)
 get_workout(app)
 put_workout(app)
